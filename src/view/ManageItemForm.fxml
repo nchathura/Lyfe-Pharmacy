@@ -42,7 +42,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </JFXButton>
-      <TableView layoutX="10.0" layoutY="411.0" prefHeight="229.0" prefWidth="1006.0">
+      <TableView fx:id="tblItem" layoutX="10.0" layoutY="411.0" prefHeight="229.0" prefWidth="1006.0">
         <columns>
            <TableColumn prefWidth="77.0" text="itemCode" />
            <TableColumn prefWidth="113.0" text="description" />
