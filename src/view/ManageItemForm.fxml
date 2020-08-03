@@ -9,40 +9,40 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="657.0" prefWidth="1026.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ManageItemForm">
+<AnchorPane prefHeight="657.0" prefWidth="1134.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ManageItemForm">
    <children>
-      <JFXButton fx:id="btnAddItem" layoutX="771.0" layoutY="55.0" onAction="#btnAddItemOnAction" prefHeight="32.0" prefWidth="122.0" style="-fx-background-color: #721A07;" text="+New Item" textFill="WHITE">
+      <JFXButton fx:id="btnAddItem" layoutX="859.0" layoutY="58.0" onAction="#btnAddItemOnAction" prefHeight="32.0" prefWidth="122.0" style="-fx-background-color: #721A07;" text="+New Item" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </JFXButton>
-      <Label layoutX="383.0" layoutY="55.0" prefHeight="49.0" prefWidth="228.0" text="Manage Items">
+      <Label layoutX="453.0" layoutY="49.0" prefHeight="49.0" prefWidth="228.0" text="Manage Items">
          <font>
             <Font name="System Bold" size="33.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtItemCode" editable="false" focusColor="#0b1675" labelFloat="true" layoutX="56.0" layoutY="133.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="item code" unFocusColor="#000143" />
-      <JFXTextField fx:id="txtDescription" focusColor="#0b1675" labelFloat="true" layoutX="56.0" layoutY="176.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="description" unFocusColor="#000143" />
-      <JFXTextField fx:id="txtManufacturer" focusColor="#0b1675" labelFloat="true" layoutX="56.0" layoutY="222.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="manufacturer" unFocusColor="#000143" />
-      <JFXTextField fx:id="txtExpiryDate" focusColor="#0b1675" labelFloat="true" layoutX="354.0" layoutY="176.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="expiry date" unFocusColor="#000143" />
-      <JFXTextField fx:id="txtProductionDate" focusColor="#0b1675" labelFloat="true" layoutX="354.0" layoutY="133.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="production date" unFocusColor="#000143" />
-      <JFXTextField fx:id="txtSellingPrice" focusColor="#0b1675" labelFloat="true" layoutX="645.0" layoutY="133.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="selling price" unFocusColor="#000143" />
-      <JFXTextField fx:id="txtQtyOnHand" focusColor="#0b1675" labelFloat="true" layoutX="645.0" layoutY="177.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="qty on hand" unFocusColor="#000143" />
-      <JFXTextField fx:id="txtMinimumStockLevel" focusColor="#0b1675" labelFloat="true" layoutX="645.0" layoutY="222.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="minimum stock level" unFocusColor="#000143" />
-      <JFXTextField fx:id="txtBuyingPrice" editable="false" focusColor="#0b1675" labelFloat="true" layoutX="354.0" layoutY="222.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="buying price" unFocusColor="#000143" />
-      <JFXTextField fx:id="txtUnitPrice" focusColor="#0b1675" labelFloat="true" layoutX="56.0" layoutY="273.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="unit price" unFocusColor="#000143" />
-      <JFXComboBox fx:id="cmbCategory" labelFloat="true" layoutX="642.0" layoutY="273.0" prefHeight="25.0" prefWidth="251.0" promptText="category" />
-      <JFXButton fx:id="btnSave" layoutX="354.0" layoutY="269.0" onAction="#btnSaveOnAction" prefHeight="34.0" prefWidth="100.0" style="-fx-background-color: #03485D;" text="Save" textFill="WHITE">
+      <JFXTextField fx:id="txtItemCode" editable="false" focusColor="#0b1675" labelFloat="true" layoutX="147.0" layoutY="132.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="item code" unFocusColor="#000143" />
+      <JFXTextField fx:id="txtDescription" focusColor="#0b1675" labelFloat="true" layoutX="147.0" layoutY="175.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="description" unFocusColor="#000143" />
+      <JFXTextField fx:id="txtManufacturer" focusColor="#0b1675" labelFloat="true" layoutX="147.0" layoutY="221.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="manufacturer" unFocusColor="#000143" />
+      <JFXTextField fx:id="txtExpiryDate" focusColor="#0b1675" labelFloat="true" layoutX="445.0" layoutY="175.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="expiry date" unFocusColor="#000143" />
+      <JFXTextField fx:id="txtProductionDate" focusColor="#0b1675" labelFloat="true" layoutX="445.0" layoutY="132.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="production date" unFocusColor="#000143" />
+      <JFXTextField fx:id="txtSellingPrice" focusColor="#0b1675" labelFloat="true" layoutX="736.0" layoutY="132.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="selling price" unFocusColor="#000143" />
+      <JFXTextField fx:id="txtQtyOnHand" focusColor="#0b1675" labelFloat="true" layoutX="736.0" layoutY="176.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="qty on hand" unFocusColor="#000143" />
+      <JFXTextField fx:id="txtMinimumStockLevel" focusColor="#0b1675" labelFloat="true" layoutX="736.0" layoutY="221.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="minimum stock level" unFocusColor="#000143" />
+      <JFXTextField fx:id="txtBuyingPrice" editable="false" focusColor="#0b1675" labelFloat="true" layoutX="445.0" layoutY="221.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="buying price" unFocusColor="#000143" />
+      <JFXTextField fx:id="txtUnitPrice" focusColor="#0b1675" labelFloat="true" layoutX="147.0" layoutY="272.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="unit price" unFocusColor="#000143" />
+      <JFXComboBox fx:id="cmbCategory" labelFloat="true" layoutX="733.0" layoutY="272.0" prefHeight="25.0" prefWidth="251.0" promptText="category" />
+      <JFXButton fx:id="btnSave" layoutX="442.0" layoutY="335.0" onAction="#btnSaveOnAction" prefHeight="34.0" prefWidth="100.0" style="-fx-background-color: #03485D;" text="Save" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="btnDelete" layoutX="505.0" layoutY="269.0" onAction="#btnDeleteOnAction" prefHeight="34.0" prefWidth="100.0" style="-fx-background-color: #510357;" text="Delete" textFill="WHITE">
+      <JFXButton fx:id="btnDelete" layoutX="593.0" layoutY="335.0" onAction="#btnDeleteOnAction" prefHeight="34.0" prefWidth="100.0" style="-fx-background-color: #510357;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </JFXButton>
-      <TableView fx:id="tblItem" layoutX="10.0" layoutY="411.0" prefHeight="229.0" prefWidth="1006.0">
+      <TableView fx:id="tblItem" layoutX="28.0" layoutY="414.0" prefHeight="229.0" prefWidth="1078.0">
         <columns>
            <TableColumn prefWidth="77.0" text="itemCode" />
            <TableColumn prefWidth="113.0" text="description" />
@@ -54,10 +54,12 @@
            <TableColumn prefWidth="81.0" text="sellingPrice" />
            <TableColumn prefWidth="100.0" text="minStockLevel" />
            <TableColumn prefWidth="90.0" text="qtyOnHand" />
-           <TableColumn prefWidth="71.0" text="unitPrice" />
+           <TableColumn prefWidth="69.0" text="unitPrice" />
+           <TableColumn prefWidth="73.0" text="companyId" />
 
 
         </columns>
       </TableView>
+      <JFXComboBox fx:id="cmbCompanyId" labelFloat="true" layoutX="445.0" layoutY="272.0" prefHeight="25.0" prefWidth="251.0" promptText="company id" />
    </children>
 </AnchorPane>
