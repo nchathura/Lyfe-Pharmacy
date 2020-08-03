@@ -1,14 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.ManageEmployeeForm"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="619.0" prefWidth="938.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ManageEmployeeForm">
+   <children>
+      <JFXTextField focusColor="#111757" labelFloat="true" layoutX="46.0" layoutY="137.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="employee Id" unFocusColor="#4d4d4d" />
+      <JFXTextField focusColor="#111757" layoutX="46.0" layoutY="166.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="employee Id" text="employee name" unFocusColor="#4d4d4d" />
+      <JFXTextField focusColor="#111757" layoutX="46.0" layoutY="198.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="employee Id" text="address" unFocusColor="#4d4d4d" />
+      <JFXTextField focusColor="#111757" layoutX="344.0" layoutY="166.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="employee Id" text="email" unFocusColor="#4d4d4d" />
+      <JFXTextField focusColor="#4a1414" layoutX="344.0" layoutY="136.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="employee Id" text="contact no" />
+      <JFXTextField focusColor="#111757" layoutX="635.0" layoutY="135.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="employee Id" text="date of birth" unFocusColor="#4d4d4d" />
+      <JFXTextField focusColor="#111757" layoutX="635.0" layoutY="167.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="employee Id" text="salary" unFocusColor="#4d4d4d" />
+      <JFXTextField focusColor="#111757" layoutX="635.0" layoutY="199.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="employee Id" text="gender" unFocusColor="#4d4d4d" />
+      <JFXTextField editable="false" focusColor="#111757" layoutX="344.0" layoutY="198.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="employee Id" text="joined date" unFocusColor="#4d4d4d" />
+      <JFXButton layoutX="761.0" layoutY="45.0" prefHeight="32.0" prefWidth="122.0" style="-fx-background-color: #721A07;" text="+New Employee" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="345.0" layoutY="276.0" prefHeight="34.0" prefWidth="100.0" style="-fx-background-color: #03485D;" text="Save" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="489.0" layoutY="276.0" prefHeight="34.0" prefWidth="100.0" style="-fx-background-color: #510357;" text="Delete" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="334.0" layoutY="45.0" prefHeight="49.0" prefWidth="310.0" text="Manage Employees">
+         <font>
+            <Font name="System Bold" size="33.0" />
+         </font>
+      </Label>
+      <TableView layoutX="6.0" layoutY="343.0" prefHeight="254.0" prefWidth="927.0">
+        <columns>
+            <TableColumn prefWidth="75.0" text="empId" />
+            <TableColumn prefWidth="75.0" text="name" />
+            <TableColumn prefWidth="95.0" text="address" />
+            <TableColumn prefWidth="122.0" text="email" />
+            <TableColumn prefWidth="99.0" text="contactNo" />
+            <TableColumn prefWidth="153.0" text="DOB" />
+            <TableColumn minWidth="0.0" prefWidth="108.0" text="salary" />
+            <TableColumn minWidth="0.0" prefWidth="63.0" text="gender" />
+            <TableColumn prefWidth="136.0" text="joinedDate" />
+        </columns>
+      </TableView>
+   </children>
 </AnchorPane>
