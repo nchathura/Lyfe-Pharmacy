@@ -10,26 +10,26 @@
 
 <AnchorPane prefHeight="619.0" prefWidth="938.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ManageEmployeeForm">
    <children>
-      <JFXTextField focusColor="#111757" labelFloat="true" layoutX="46.0" layoutY="137.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="employee Id" unFocusColor="#4d4d4d" />
-      <JFXTextField focusColor="#111757" layoutX="46.0" layoutY="166.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="employee Id" text="employee name" unFocusColor="#4d4d4d" />
-      <JFXTextField focusColor="#111757" layoutX="46.0" layoutY="198.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="employee Id" text="address" unFocusColor="#4d4d4d" />
-      <JFXTextField focusColor="#111757" layoutX="344.0" layoutY="166.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="employee Id" text="email" unFocusColor="#4d4d4d" />
-      <JFXTextField focusColor="#4a1414" layoutX="344.0" layoutY="136.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="employee Id" text="contact no" />
-      <JFXTextField focusColor="#111757" layoutX="635.0" layoutY="135.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="employee Id" text="date of birth" unFocusColor="#4d4d4d" />
-      <JFXTextField focusColor="#111757" layoutX="635.0" layoutY="167.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="employee Id" text="salary" unFocusColor="#4d4d4d" />
-      <JFXTextField focusColor="#111757" layoutX="635.0" layoutY="199.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="employee Id" text="gender" unFocusColor="#4d4d4d" />
-      <JFXTextField editable="false" focusColor="#111757" layoutX="344.0" layoutY="198.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="employee Id" text="joined date" unFocusColor="#4d4d4d" />
-      <JFXButton layoutX="761.0" layoutY="45.0" prefHeight="32.0" prefWidth="122.0" style="-fx-background-color: #721A07;" text="+New Employee" textFill="WHITE">
+      <JFXTextField fx:id="txtEmployeeId" editable="false" focusColor="#0b1675" labelFloat="true" layoutX="46.0" layoutY="123.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="employee Id" unFocusColor="#000143" />
+      <JFXTextField fx:id="txtEmployeeName" focusColor="#0b1675" labelFloat="true" layoutX="46.0" layoutY="166.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="employee name" unFocusColor="#000143" />
+      <JFXTextField fx:id="txtAddress" focusColor="#0b1675" labelFloat="true" layoutX="46.0" layoutY="212.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="address" unFocusColor="#000143" />
+      <JFXTextField fx:id="txtEmail" focusColor="#0b1675" labelFloat="true" layoutX="344.0" layoutY="166.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="email" unFocusColor="#000143" />
+      <JFXTextField fx:id="txtContactNo" focusColor="#0b1675" labelFloat="true" layoutX="344.0" layoutY="123.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="contact no" unFocusColor="#000143" />
+      <JFXTextField fx:id="txtDateOfBirth" focusColor="#0b1675" labelFloat="true" layoutX="635.0" layoutY="123.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="date of birth" unFocusColor="#000143" />
+      <JFXTextField fx:id="txtSalary" focusColor="#0b1675" labelFloat="true" layoutX="635.0" layoutY="167.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="salary" unFocusColor="#000143" />
+      <JFXTextField fx:id="txtGender" focusColor="#0b1675" labelFloat="true" layoutX="635.0" layoutY="212.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="gender" unFocusColor="#000143" />
+      <JFXTextField fx:id="txtJoinedDate" editable="false" focusColor="#0b1675" labelFloat="true" layoutX="344.0" layoutY="212.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="joined date" unFocusColor="#000143" />
+      <JFXButton fx:id="btnAddEmployee" layoutX="761.0" layoutY="45.0" onAction="#btnAddEmployeeOnAction" prefHeight="32.0" prefWidth="122.0" style="-fx-background-color: #721A07;" text="+New Employee" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="345.0" layoutY="276.0" prefHeight="34.0" prefWidth="100.0" style="-fx-background-color: #03485D;" text="Save" textFill="WHITE">
+      <JFXButton fx:id="btnSave" layoutX="345.0" layoutY="276.0" onAction="#btnSaveOnAction" prefHeight="34.0" prefWidth="100.0" style="-fx-background-color: #03485D;" text="Save" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="489.0" layoutY="276.0" prefHeight="34.0" prefWidth="100.0" style="-fx-background-color: #510357;" text="Delete" textFill="WHITE">
+      <JFXButton fx:id="btnDelete" layoutX="489.0" layoutY="276.0" onAction="#btnDeleteOnAction" prefHeight="34.0" prefWidth="100.0" style="-fx-background-color: #510357;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -39,7 +39,7 @@
             <Font name="System Bold" size="33.0" />
          </font>
       </Label>
-      <TableView layoutX="6.0" layoutY="343.0" prefHeight="254.0" prefWidth="927.0">
+      <TableView fx:id="tblEmployee" layoutX="6.0" layoutY="343.0" prefHeight="254.0" prefWidth="927.0">
         <columns>
             <TableColumn prefWidth="75.0" text="empId" />
             <TableColumn prefWidth="75.0" text="name" />
