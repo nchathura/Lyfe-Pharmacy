@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2020-08-03T11:35:33.827Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36" etag="afzNOEec5k0O9UjkvB2a" version="13.5.8" type="github">
+<mxfile host="app.diagrams.net" modified="2020-08-03T11:35:53.834Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36" etag="OA8eXHEayh8ZjqVNbYtO" version="13.5.8" type="github">
   <diagram id="MYWh3xGumpN65zhYnzHV" name="Page-1">
-    <mxGraphModel dx="1375" dy="254" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1768" dy="444" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -358,7 +358,7 @@
             <mxPoint x="210" y="800" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="3sjaLSUX4elg7d6stFZi-95" value="sell" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="3sjaLSUX4elg7d6stFZi-95" value="has" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="140" y="540" width="80" height="80" as="geometry" />
         </mxCell>
         <mxCell id="3sjaLSUX4elg7d6stFZi-96" value="" style="endArrow=none;html=1;exitX=0.578;exitY=0.975;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitPerimeter=0;" edge="1" parent="1" source="3sjaLSUX4elg7d6stFZi-2" target="3sjaLSUX4elg7d6stFZi-95">
