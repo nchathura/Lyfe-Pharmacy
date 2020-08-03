@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-08-03T11:36:17.154Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36" etag="-bR3l9_gn1x_s8PVBH_r" version="13.5.8" type="github">
+<mxfile host="app.diagrams.net" modified="2020-08-03T11:36:30.819Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36" etag="0c6cjgUF06524HeHWYDf" version="13.5.8" type="github">
   <diagram id="MYWh3xGumpN65zhYnzHV" name="Page-1">
     <mxGraphModel dx="1768" dy="444" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -13,7 +13,7 @@
         <mxCell id="3sjaLSUX4elg7d6stFZi-3" value="Stock" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="535" y="440" width="90" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="3sjaLSUX4elg7d6stFZi-4" value="OrderDetails" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="3sjaLSUX4elg7d6stFZi-4" value="OrderDetail" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="540" y="220" width="90" height="40" as="geometry" />
         </mxCell>
         <mxCell id="3sjaLSUX4elg7d6stFZi-5" value="Agent" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
