@@ -2,6 +2,7 @@ package dao;
 
 import db.DBConnection;
 import util.AgentTM;
+import util.CompanyTM;
 import util.EmployeeTM;
 
 import java.sql.*;
@@ -228,6 +229,117 @@ public class DaoLayer {
         return false;
 
     }
+
+    //===================================================================================================================================
+
+    public static List<CompanyTM> getAllCompanies(){
+        ArrayList<CompanyTM> companies = new ArrayList<>();
+        try {
+
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM company");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                companies.add(new CompanyTM(resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getDate(3).toLocalDate(),
+                        resultSet.getString(4),
+                        resultSet.getString(5)
+
+                ));
+
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return companies;
+
+    }
+    public static CompanyTM getCompany(String companyId) {
+        try {
+
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT *  FROM company WHERE companyId=(?)");
+            preparedStatement.setObject(1, companyId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return new CompanyTM(
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getDate(3).toLocalDate(),
+                        resultSet.getString(4),
+                        resultSet.getString(5)
+
+                );
+
+
+            }
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static boolean saveCompany(CompanyTM companyTM){
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO agent VALUES (?,?,?,?,?,?)");
+            preparedStatement.setObject(1, companyTM.getCompanyId());
+            preparedStatement.setObject(2, companyTM.getCompanyName());
+            preparedStatement.setObject(3, companyTM.getEntryDate());
+            preparedStatement.setObject(6, companyTM.getCompanyPhoneNo());
+            preparedStatement.setObject(4, companyTM.getCompanyEmail());
+
+
+
+
+            return preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+
+
+    }
+    public static boolean deleteCompany(String companyId){
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM company WHERE companyId=(?)");
+            preparedStatement.setObject(1, companyId);
+            return preparedStatement.executeUpdate()>0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+
+
+    }
+    public static boolean updateCompany(CompanyTM companyTM){
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE company SET companyName=(?),entryDate=(?),companyPhoneNo=(?),companyEmail=(?) WHERE companyId=(?)");
+
+            preparedStatement.setObject(1, companyTM.getCompanyName());
+            preparedStatement.setObject(2, companyTM.getEntryDate());
+            preparedStatement.setObject(3, companyTM.getCompanyPhoneNo());
+            preparedStatement.setObject(4, companyTM.getCompanyEmail());
+            preparedStatement.setObject(5, companyTM.getCompanyId());
+
+
+
+            return preparedStatement.executeUpdate()>0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+
+    }
+
 
 
 }
