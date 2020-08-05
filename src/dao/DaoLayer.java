@@ -284,24 +284,54 @@ public class DaoLayer {
         return null;
     }
 
-    public static boolean saveCompany(CompanyTM companyTM){
+    public static boolean saveCompany(CompanyTM companyTM,List<ItemTM> itemsOfTheCompany){
+        Connection connection = DBConnection.getInstance().getConnection();
         try {
-            Connection connection = DBConnection.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO agent VALUES (?,?,?,?,?,?)");
+            connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO company VALUES (?,?,?,?,?,?)");
             preparedStatement.setObject(1, companyTM.getCompanyId());
             preparedStatement.setObject(2, companyTM.getCompanyName());
             preparedStatement.setObject(3, companyTM.getEntryDate());
             preparedStatement.setObject(6, companyTM.getCompanyPhoneNo());
             preparedStatement.setObject(4, companyTM.getCompanyEmail());
+            int affectedRows = preparedStatement.executeUpdate();
+            if(affectedRows==0){
+                connection.rollback();
+                return  false;
+            }
+            for (ItemTM item:itemsOfTheCompany) {
+                preparedStatement = connection.prepareStatement("INSERT INTO companyitem VALUES (?,?)");
+                preparedStatement.setObject(1,item.getItemCode());
+                preparedStatement.setObject(2,companyTM.getCompanyId());
+                affectedRows =  preparedStatement.executeUpdate();
+               if(affectedRows == 0){
+                   connection.rollback();
+                   return false;
+
+               }
+
+            }
+            connection.commit();
+            return true;
 
 
-
-
-            return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
+
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            return false;
         }
-        return false;
+        finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
 
 
     }
