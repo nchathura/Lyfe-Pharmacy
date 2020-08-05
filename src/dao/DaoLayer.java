@@ -93,6 +93,7 @@ public class DaoLayer {
             preparedStatement.setObject(1, employeeId);
             return preparedStatement.executeUpdate()>0;
         } catch (SQLException e) {
+
             e.printStackTrace();
         }
         return false;
@@ -340,17 +341,95 @@ public class DaoLayer {
 
     //===================================================================================================================================
 
-    public static List<Order> getAllOrders(){
-        ArrayList<Order> orders = new ArrayList<>();
+    public static boolean placeOrder(Order order,List<OrderDetail> orderDetailList){
+        Connection connection = DBConnection.getInstance().getConnection();
+
+      try {
+          connection.setAutoCommit(false);
+          PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO `order` VALUES (?,?,?)");
+          preparedStatement.setObject(1, order.getOrderId());
+          preparedStatement.setObject(2, order.getEmpId());
+          preparedStatement.setObject(3, order.getOrderDate());
+          int affectedRows = preparedStatement.executeUpdate();
+          if(affectedRows==0){
+              connection.rollback();
+              return false;
+          }
+
+          for (OrderDetail orderDetail:orderDetailList) {
+              preparedStatement = connection.prepareStatement("INSERT  INTO orderdetail VALUES (?,?,?,?)");
+              preparedStatement.setObject(1, orderDetail.getOrderId());
+              preparedStatement.setObject(2, orderDetail.getItemCode());
+              preparedStatement.setObject(3, orderDetail.getQty());
+              preparedStatement.setObject(4, orderDetail.getUnitPrice());
+              affectedRows = preparedStatement.executeUpdate();
+              if (affectedRows == 0) {
+                  connection.rollback();
+                  return false;
+              }
+
+
+              preparedStatement = connection.prepareStatement("UPDATE lyfepharmacy.item SET lyfepharmacy.item.qtyOnHand = lyfepharmacy.item.qtyOnHand-(?) WHERE lyfepharmacy.item.itemCode=(?)");
+              preparedStatement.setObject(1, orderDetail.getQty());
+              preparedStatement.setObject(2,orderDetail.getItemCode());
+              preparedStatement.executeUpdate();
+              if(affectedRows == 0){
+                  connection.rollback();
+                  return  false;
+              }
+
+          }
+          connection.commit();
+          return true;
+
+
+
+      } catch (SQLException e) {
+          e.printStackTrace();
+          try {
+              connection.rollback();
+          } catch (SQLException ex) {
+              ex.printStackTrace();
+          }
+
+          return  false;
+      }
+      finally {
+          try {
+              connection.setAutoCommit(true);
+          } catch (SQLException e) {
+              e.printStackTrace();
+          }
+      }
+
+
+
+    }
+
+
+
+
+    //=========================================================================================================================
+
+    public static List<ItemTM> getAllItems(){
+        ArrayList<ItemTM> items = new ArrayList<>();
         try {
 
             Connection connection = DBConnection.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM `order`");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM item");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                orders.add(new Order(resultSet.getString(1),
+                items.add(new ItemTM(resultSet.getString(1),
                         resultSet.getString(2),
-                        resultSet.getDate(3).toLocalDate()
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getDate(5).toLocalDate(),
+                        resultSet.getDate(6).toLocalDate(),
+                        resultSet.getBigDecimal(7),
+                        resultSet.getBigDecimal(8),
+                        resultSet.getBigDecimal(9),
+                        resultSet.getBigDecimal(10),
+                        resultSet.getBigDecimal(11)
 
 
                 ));
@@ -361,27 +440,30 @@ public class DaoLayer {
             e.printStackTrace();
         }
 
-        return orders;
+        return items;
 
     }
-    public static Order getOrder(String companyId) {
+    public static ItemTM getItem(String itemCode) {
         try {
 
             Connection connection = DBConnection.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT *  FROM `order` WHERE orderId=(?)");
-            preparedStatement.setObject(1, companyId);
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT *  FROM lyfepharmacy.item WHERE itemCode=(?)");
+            preparedStatement.setObject(1, itemCode);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                return new Order(
-                        resultSet.getString(1),
+                return new ItemTM(resultSet.getString(1),
                         resultSet.getString(2),
-                        resultSet.getDate(3).toLocalDate()
-
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getDate(5).toLocalDate(),
+                        resultSet.getDate(6).toLocalDate(),
+                        resultSet.getBigDecimal(7),
+                        resultSet.getBigDecimal(8),
+                        resultSet.getBigDecimal(9),
+                        resultSet.getBigDecimal(10),
+                        resultSet.getBigDecimal(11)
                 );
-
-
             }
-
 
 
         } catch (SQLException e) {
@@ -390,17 +472,21 @@ public class DaoLayer {
         return null;
     }
 
-    public static boolean saveOrder(Order order){
+    public static boolean saveItem(ItemTM itemTM){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO `order` VALUES (?,?,?)");
-            preparedStatement.setObject(1, order.getOrderId());
-            preparedStatement.setObject(2, order.getEmpId());
-            preparedStatement.setObject(3, order.getOrderDate());
-
-
-
-
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO lyfepharmacy.item VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+            preparedStatement.setObject(1,itemTM.getItemCode());
+            preparedStatement.setObject(2,itemTM.getDescription());
+            preparedStatement.setObject(3,itemTM.getCategory());
+            preparedStatement.setObject(4,itemTM.getManufacturer());
+            preparedStatement.setObject(5,itemTM.getProductionDate());
+            preparedStatement.setObject(6,itemTM.getExpiryDate());
+            preparedStatement.setObject(7,itemTM.getBuyingPrice());
+            preparedStatement.setObject(8,itemTM.getSellingPrice());
+            preparedStatement.setObject(9,itemTM.getMinimumStockLevel());
+            preparedStatement.setObject(9,itemTM.getQtyOnHand());
+            preparedStatement.setObject(9,itemTM.getUnitPrice());
 
             return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -410,11 +496,11 @@ public class DaoLayer {
 
 
     }
-    public static boolean deleteOrder(String orderId){
+    public static boolean deleteItem(String itemCode){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM `order`  WHERE orderId=(?)");
-            preparedStatement.setObject(1, orderId);
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM lyfepharmacy.item WHERE lyfepharmacy.item.itemCode=(?)");
+            preparedStatement.setObject(1, itemCode);
             return preparedStatement.executeUpdate()>0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -423,17 +509,21 @@ public class DaoLayer {
 
 
     }
-    public static boolean updateOrder(Order order){
+    public static boolean updateItem(ItemTM itemTM){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `order` SET empId=(?),orderDate=(?) WHERE orderId=(?)");
-
-            preparedStatement.setObject(1, order.getEmpId());
-            preparedStatement.setObject(2, order.getOrderDate());
-            preparedStatement.setObject(3, order.getOrderId());
-
-
-
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE item SET description=(?),category=(?),manufacturer=(?),productionDate=(?),expiryDate=(?),buyingPrice=(?),sellingPrice=(?),minimumStockLevel=(?),qtyOnHand=(?),unitPrice=(?) WHERE itemCode=(?)");
+            preparedStatement.setObject(11,itemTM.getItemCode());
+            preparedStatement.setObject(1,itemTM.getDescription());
+            preparedStatement.setObject(2,itemTM.getCategory());
+            preparedStatement.setObject(3,itemTM.getManufacturer());
+            preparedStatement.setObject(4,itemTM.getProductionDate());
+            preparedStatement.setObject(5,itemTM.getExpiryDate());
+            preparedStatement.setObject(6,itemTM.getBuyingPrice());
+            preparedStatement.setObject(7,itemTM.getSellingPrice());
+            preparedStatement.setObject(8,itemTM.getMinimumStockLevel());
+            preparedStatement.setObject(9,itemTM.getQtyOnHand());
+            preparedStatement.setObject(10,itemTM.getUnitPrice());
 
             return preparedStatement.executeUpdate()>0;
         } catch (SQLException e) {
@@ -442,6 +532,11 @@ public class DaoLayer {
         return false;
 
     }
+
+    //===================================================================================================================================
+
+
+
 
 
 
