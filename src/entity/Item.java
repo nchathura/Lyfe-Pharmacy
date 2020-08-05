@@ -1,9 +1,10 @@
 package entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Item {
+public class Item implements Serializable {
     private String itemCode;
     private String description;
     private String category;

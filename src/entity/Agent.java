@@ -1,8 +1,9 @@
 package entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Agent {
+public class Agent implements Serializable {
     private String agentId;
     private String companyId;
     private LocalDate entryDate;

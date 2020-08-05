@@ -1,8 +1,9 @@
 package entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Company {
+public class Company implements Serializable {
     private String companyId;
     private String companyName;
     private LocalDate entryDate;
