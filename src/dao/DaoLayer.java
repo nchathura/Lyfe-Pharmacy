@@ -441,7 +441,7 @@ public class DaoLayer {
        int affectedRows=0;
 
        try {
-           connection.setAutoCommit(false);
+
            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO `order` VALUES (?,?,?)");
            preparedStatement.setObject(1, order.getOrderId());
            preparedStatement.setObject(2, order.getEmpId());
