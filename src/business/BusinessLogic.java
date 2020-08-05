@@ -1,8 +1,12 @@
 package business;
 
 import dao.DaoLayer;
+import db.DBConnection;
 import util.*;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 public class BusinessLogic {
@@ -64,8 +68,51 @@ public class BusinessLogic {
     }
 
     public static boolean placeOrder(Order order, List<OrderDetail> orderDetailList){
-        return  DaoLayer.placeOrder(order,orderDetailList);
+        Connection connection = DBConnection.getInstance().getConnection();
+        int affectedRows = 0;
+        try {
+            connection.setAutoCommit(false);
+            affectedRows = DaoLayer.saveOrder(order);
+            if (affectedRows == 0) {
+                connection.rollback();
+                return false;
+            }
+
+
+            affectedRows = DaoLayer.saveOrderDetails(orderDetailList);
+            if(affectedRows == 0){
+                connection.rollback();
+                return false;
+            }
+            affectedRows = DaoLayer.updateQty(orderDetailList);
+            if(affectedRows == 0){
+                connection.rollback();
+                return false;
+            }
+
+            connection.commit();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            return false;
+        }
+        finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
+
+
+
 
     public static List<ItemTM> getAllItems(){
         return  DaoLayer.getAllItems();
