@@ -371,7 +371,7 @@ public class DaoLayer {
 
     //===================================================================================================================================
 
-    public static boolean placeOrder(Order order,List<OrderDetail> orderDetailList){
+   /* public static boolean placeOrder(Order order,List<OrderDetail> orderDetailList){
         Connection connection = DBConnection.getInstance().getConnection();
 
       try {
@@ -435,8 +435,69 @@ public class DaoLayer {
 
 
     }
+*/
+   public static int saveOrder(Order order) {
+       Connection connection = DBConnection.getInstance().getConnection();
+       int affectedRows=0;
+
+       try {
+           connection.setAutoCommit(false);
+           PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO `order` VALUES (?,?,?)");
+           preparedStatement.setObject(1, order.getOrderId());
+           preparedStatement.setObject(2, order.getEmpId());
+           preparedStatement.setObject(3, order.getOrderDate());
+           affectedRows = preparedStatement.executeUpdate();
 
 
+       } catch (SQLException e) {
+           e.printStackTrace();
+       }
+       return affectedRows;
+   }
+
+    public static int saveOrderDetails(List<OrderDetail> orderDetailList) {
+        Connection connection = DBConnection.getInstance().getConnection();
+        int affectedRows = 0;
+
+        try {
+
+
+            for (OrderDetail orderDetail : orderDetailList) {
+                PreparedStatement preparedStatement = connection.prepareStatement("INSERT  INTO orderdetail VALUES (?,?,?,?)");
+                preparedStatement.setObject(1, orderDetail.getOrderId());
+                preparedStatement.setObject(2, orderDetail.getItemCode());
+                preparedStatement.setObject(3, orderDetail.getQty());
+                preparedStatement.setObject(4, orderDetail.getUnitPrice());
+                affectedRows = preparedStatement.executeUpdate();
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return affectedRows;
+    }
+
+    public static int updateQty(List<OrderDetail> orderDetailList){
+        Connection connection = DBConnection.getInstance().getConnection();
+        int affectedRows=0;
+        try {
+            for (OrderDetail orderDetail : orderDetailList) {
+
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE lyfepharmacy.item SET lyfepharmacy.item.qtyOnHand = lyfepharmacy.item.qtyOnHand-(?) WHERE lyfepharmacy.item.itemCode=(?)");
+                preparedStatement.setObject(1, orderDetail.getQty());
+                preparedStatement.setObject(2, orderDetail.getItemCode());
+                affectedRows = preparedStatement.executeUpdate();
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return affectedRows;
+
+
+   }
 
 
     //=========================================================================================================================
