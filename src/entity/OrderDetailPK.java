@@ -1,6 +1,8 @@
 package entity;
 
-public class OrderDetailPK {
+import java.io.Serializable;
+
+public class OrderDetailPK implements Serializable {
     private String orderId;
     private String itemCode;
 

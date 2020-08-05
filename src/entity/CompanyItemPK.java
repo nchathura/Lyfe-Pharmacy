@@ -1,6 +1,8 @@
 package entity;
 
-public class CompanyItemPK {
+import java.io.Serializable;
+
+public class CompanyItemPK implements Serializable {
     private String ItemCode;
     private String companyId;
 
