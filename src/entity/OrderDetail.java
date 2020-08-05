@@ -4,16 +4,14 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 public class OrderDetail implements Serializable {
-    private String orderId;
-    private String itemCode;
+    private OrderDetailPK orderDetailPK;
     private BigDecimal qty;
     private BigDecimal unitPrice;
 
     @Override
     public String toString() {
         return "OrderDetail{" +
-                "orderId='" + orderId + '\'' +
-                ", itemCode='" + itemCode + '\'' +
+                "orderDetailPK=" + orderDetailPK +
                 ", qty=" + qty +
                 ", unitPrice=" + unitPrice +
                 '}';
@@ -22,27 +20,16 @@ public class OrderDetail implements Serializable {
     public OrderDetail() {
     }
 
-    public OrderDetail(String orderId, String itemCode, BigDecimal qty, BigDecimal unitPrice) {
-        this.orderId = orderId;
-        this.itemCode = itemCode;
+
+    public OrderDetail(OrderDetailPK orderDetailPK, BigDecimal qty, BigDecimal unitPrice) {
+        this.orderDetailPK = orderDetailPK;
         this.qty = qty;
         this.unitPrice = unitPrice;
     }
-
-    public String getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
-
-    public String getItemCode() {
-        return itemCode;
-    }
-
-    public void setItemCode(String itemCode) {
-        this.itemCode = itemCode;
+    public OrderDetail(String orderId,String itemCode, BigDecimal qty, BigDecimal unitPrice) {
+        this.orderDetailPK = new OrderDetailPK(orderId,itemCode);
+        this.qty = qty;
+        this.unitPrice = unitPrice;
     }
 
     public BigDecimal getQty() {
@@ -59,5 +46,13 @@ public class OrderDetail implements Serializable {
 
     public void setUnitPrice(BigDecimal unitPrice) {
         this.unitPrice = unitPrice;
+    }
+
+    public OrderDetailPK getOrderDetailPK() {
+        return orderDetailPK;
+    }
+
+    public void setOrderDetailPK(OrderDetailPK orderDetailPK) {
+        this.orderDetailPK = orderDetailPK;
     }
 }

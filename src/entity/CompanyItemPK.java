@@ -3,13 +3,13 @@ package entity;
 import java.io.Serializable;
 
 public class CompanyItemPK implements Serializable {
-    private String ItemCode;
+    private String itemCode;
     private String companyId;
 
     @Override
     public String toString() {
         return "CompanyItemPK{" +
-                "ItemCode='" + ItemCode + '\'' +
+                "ItemCode='" + itemCode + '\'' +
                 ", companyId='" + companyId + '\'' +
                 '}';
     }
@@ -18,16 +18,16 @@ public class CompanyItemPK implements Serializable {
     }
 
     public CompanyItemPK(String itemCode, String companyId) {
-        ItemCode = itemCode;
+        this.itemCode = itemCode;
         this.companyId = companyId;
     }
 
     public String getItemCode() {
-        return ItemCode;
+        return itemCode;
     }
 
     public void setItemCode(String itemCode) {
-        ItemCode = itemCode;
+        this.itemCode = itemCode;
     }
 
     public String getCompanyId() {

@@ -3,38 +3,25 @@ package entity;
 import java.io.Serializable;
 
 public class CompanyItem implements Serializable {
-     private String ItemCode;
-     private String companyId;
-
-    @Override
-    public String toString() {
-        return "CompanyItem{" +
-                "ItemCode='" + ItemCode + '\'' +
-                ", companyId='" + companyId + '\'' +
-                '}';
-    }
+     private CompanyItemPK companyItemPK;
 
     public CompanyItem() {
     }
 
     public CompanyItem(String itemCode, String companyId) {
-        ItemCode = itemCode;
-        this.companyId = companyId;
+        this.companyItemPK = new CompanyItemPK(itemCode,companyId);
     }
 
-    public String getItemCode() {
-        return ItemCode;
+    public CompanyItem(CompanyItemPK companyItemPK) {
+        this.companyItemPK = companyItemPK;
     }
 
-    public void setItemCode(String itemCode) {
-        ItemCode = itemCode;
+
+    public CompanyItemPK getCompanyItemPK() {
+        return companyItemPK;
     }
 
-    public String getCompanyId() {
-        return companyId;
-    }
-
-    public void setCompanyId(String companyId) {
-        this.companyId = companyId;
+    public void setCompanyItemPK(CompanyItemPK companyItemPK) {
+        this.companyItemPK = companyItemPK;
     }
 }
