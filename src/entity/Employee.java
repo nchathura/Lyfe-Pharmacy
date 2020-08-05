@@ -2,7 +2,7 @@ package entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.sql.Date;
 
 public class Employee implements Serializable {
     private String empId;
@@ -10,8 +10,8 @@ public class Employee implements Serializable {
     private String empAddress;
     private String email;
     private String contactNo;
-    private LocalDate dateOfBirth;
-    private LocalDate joinedDate;
+    private Date dateOfBirth;
+    private Date joinedDate;
     private BigDecimal salary;
     private String gender;
 
@@ -33,7 +33,7 @@ public class Employee implements Serializable {
     public Employee() {
     }
 
-    public Employee(String empId, String empName, String empAddress, String email, String contactNo, LocalDate dateOfBirth, LocalDate joinedDate, BigDecimal salary, String gender) {
+    public Employee(String empId, String empName, String empAddress, String email, String contactNo, Date dateOfBirth, Date joinedDate, BigDecimal salary, String gender) {
         this.empId = empId;
         this.empName = empName;
         this.empAddress = empAddress;
@@ -85,19 +85,19 @@ public class Employee implements Serializable {
         this.contactNo = contactNo;
     }
 
-    public LocalDate getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public LocalDate getJoinedDate() {
+    public Date getJoinedDate() {
         return joinedDate;
     }
 
-    public void setJoinedDate(LocalDate joinedDate) {
+    public void setJoinedDate(Date joinedDate) {
         this.joinedDate = joinedDate;
     }
 

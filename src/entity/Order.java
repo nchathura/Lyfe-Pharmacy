@@ -1,12 +1,12 @@
 package entity;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.sql.Date;
 
 public class Order implements Serializable {
     private String orderId;
     private String empId;
-    private LocalDate orderDate;
+    private Date orderDate;
 
     @Override
     public String toString() {
@@ -20,7 +20,7 @@ public class Order implements Serializable {
     public Order() {
     }
 
-    public Order(String orderId, String empId, LocalDate orderDate) {
+    public Order(String orderId, String empId, Date orderDate) {
         this.orderId = orderId;
         this.empId = empId;
         this.orderDate = orderDate;
@@ -42,11 +42,11 @@ public class Order implements Serializable {
         this.empId = empId;
     }
 
-    public LocalDate getOrderDate() {
+    public Date getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(LocalDate orderDate) {
+    public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
     }
 }

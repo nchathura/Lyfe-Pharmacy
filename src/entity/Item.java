@@ -2,15 +2,15 @@ package entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.sql.Date;
 
 public class Item implements Serializable {
     private String itemCode;
     private String description;
     private String category;
     private String manufacturer;
-    private LocalDate productionDate;
-    private LocalDate expiryDate;
+    private Date productionDate;
+    private Date expiryDate;
     private BigDecimal buyingPrice;
     private BigDecimal sellingPrice;
     private BigDecimal minimumStockLevel;
@@ -37,7 +37,7 @@ public class Item implements Serializable {
     public Item() {
     }
 
-    public Item(String itemCode, String description, String category, String manufacturer, LocalDate productionDate, LocalDate expiryDate, BigDecimal buyingPrice, BigDecimal sellingPrice, BigDecimal minimumStockLevel, BigDecimal qtyOnHand, BigDecimal unitPrice) {
+    public Item(String itemCode, String description, String category, String manufacturer, Date productionDate, Date expiryDate, BigDecimal buyingPrice, BigDecimal sellingPrice, BigDecimal minimumStockLevel, BigDecimal qtyOnHand, BigDecimal unitPrice) {
         this.itemCode = itemCode;
         this.description = description;
         this.category = category;
@@ -83,19 +83,19 @@ public class Item implements Serializable {
         this.manufacturer = manufacturer;
     }
 
-    public LocalDate getProductionDate() {
+    public Date getProductionDate() {
         return productionDate;
     }
 
-    public void setProductionDate(LocalDate productionDate) {
+    public void setProductionDate(Date productionDate) {
         this.productionDate = productionDate;
     }
 
-    public LocalDate getExpiryDate() {
+    public Date getExpiryDate() {
         return expiryDate;
     }
 
-    public void setExpiryDate(LocalDate expiryDate) {
+    public void setExpiryDate(Date expiryDate) {
         this.expiryDate = expiryDate;
     }
 

@@ -1,12 +1,12 @@
 package entity;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.sql.Date;
 
 public class Company implements Serializable {
     private String companyId;
     private String companyName;
-    private LocalDate entryDate;
+    private Date entryDate;
     private String companyPhoneNo;
     private String companyEmail;
 
@@ -24,7 +24,7 @@ public class Company implements Serializable {
     public Company() {
     }
 
-    public Company(String companyId, String companyName, LocalDate entryDate, String companyPhoneNo, String companyEmail) {
+    public Company(String companyId, String companyName, Date entryDate, String companyPhoneNo, String companyEmail) {
         this.companyId = companyId;
         this.companyName = companyName;
         this.entryDate = entryDate;
@@ -48,11 +48,11 @@ public class Company implements Serializable {
         this.companyName = companyName;
     }
 
-    public LocalDate getEntryDate() {
+    public Date getEntryDate() {
         return entryDate;
     }
 
-    public void setEntryDate(LocalDate entryDate) {
+    public void setEntryDate(Date entryDate) {
         this.entryDate = entryDate;
     }
 

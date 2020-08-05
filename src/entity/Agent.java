@@ -1,12 +1,13 @@
 package entity;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.sql.Date;
+
 
 public class Agent implements Serializable {
     private String agentId;
     private String companyId;
-    private LocalDate entryDate;
+    private Date entryDate;
     private String phoneNo;
     private String email;
     private String name;
@@ -26,7 +27,7 @@ public class Agent implements Serializable {
     public Agent() {
     }
 
-    public Agent(String agentId, String companyId, LocalDate entryDate, String phoneNo, String email, String name) {
+    public Agent(String agentId, String companyId, Date entryDate, String phoneNo, String email, String name) {
         this.agentId = agentId;
         this.companyId = companyId;
         this.entryDate = entryDate;
@@ -51,11 +52,11 @@ public class Agent implements Serializable {
         this.companyId = companyId;
     }
 
-    public LocalDate getEntryDate() {
+    public Date getEntryDate() {
         return entryDate;
     }
 
-    public void setEntryDate(LocalDate entryDate) {
+    public void setEntryDate(Date entryDate) {
         this.entryDate = entryDate;
     }
 
