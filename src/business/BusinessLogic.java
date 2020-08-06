@@ -5,7 +5,6 @@ import db.DBConnection;
 import util.*;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -108,7 +107,6 @@ public class BusinessLogic {
                 e.printStackTrace();
             }
         }
-
     }
 
 
