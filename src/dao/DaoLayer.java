@@ -436,7 +436,9 @@ public class DaoLayer {
 
     }
 */
+
    public static int saveOrder(Order order) {
+
        Connection connection = DBConnection.getInstance().getConnection();
        int affectedRows=0;
 
