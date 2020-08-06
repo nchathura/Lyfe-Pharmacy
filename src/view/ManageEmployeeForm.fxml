@@ -5,10 +5,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="619.0" prefWidth="938.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ManageEmployeeForm">
+<AnchorPane fx:id="root" prefHeight="619.0" prefWidth="938.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageEmployeeFormController">
    <children>
       <JFXTextField fx:id="txtEmployeeId" editable="false" focusColor="#0b1675" labelFloat="true" layoutX="46.0" layoutY="123.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="employee Id" unFocusColor="#000143" />
       <JFXTextField fx:id="txtEmployeeName" focusColor="#0b1675" labelFloat="true" layoutX="46.0" layoutY="166.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="employee name" unFocusColor="#000143" />
@@ -19,7 +21,7 @@
       <JFXTextField fx:id="txtSalary" focusColor="#0b1675" labelFloat="true" layoutX="635.0" layoutY="167.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="salary" unFocusColor="#000143" />
       <JFXTextField fx:id="txtGender" focusColor="#0b1675" labelFloat="true" layoutX="635.0" layoutY="212.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="gender" unFocusColor="#000143" />
       <JFXTextField fx:id="txtJoinedDate" editable="false" focusColor="#0b1675" labelFloat="true" layoutX="344.0" layoutY="212.0" opacity="0.55" prefHeight="25.0" prefWidth="251.0" promptText="joined date" unFocusColor="#000143" />
-      <JFXButton fx:id="btnAddEmployee" layoutX="761.0" layoutY="45.0" onAction="#btnAddEmployeeOnAction" prefHeight="32.0" prefWidth="122.0" style="-fx-background-color: #721A07;" text="+New Employee" textFill="WHITE">
+      <JFXButton fx:id="btnAddEmployee" layoutX="801.0" layoutY="20.0" onAction="#btnAddEmployeeOnAction" prefHeight="32.0" prefWidth="122.0" style="-fx-background-color: #721A07;" text="+New Employee" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -34,7 +36,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </JFXButton>
-      <Label layoutX="334.0" layoutY="45.0" prefHeight="49.0" prefWidth="310.0" text="Manage Employees">
+      <Label layoutX="334.0" layoutY="11.0" prefHeight="49.0" prefWidth="310.0" text="Manage Employees">
          <font>
             <Font name="System Bold" size="33.0" />
          </font>
@@ -52,5 +54,10 @@
             <TableColumn prefWidth="136.0" text="joinedDate" />
         </columns>
       </TableView>
+      <ImageView fx:id="imgHome" fitHeight="34.0" fitWidth="39.0" layoutX="29.0" layoutY="19.0" onMouseClicked="#navigate" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../asset/home.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
