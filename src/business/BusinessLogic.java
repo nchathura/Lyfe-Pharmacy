@@ -3,8 +3,8 @@ package business;
 import dao.*;
 import db.DBConnection;
 import entity.*;
+import entity.CompanyItem;
 import util.*;
-import util.CompanyItem;
 import util.Order;
 import util.OrderDetail;
 
@@ -333,7 +333,56 @@ public class BusinessLogic {
     }
 
 
-    public static boolean saveItem(ItemTM itemTM) {
+    public static boolean saveItem(CompanyItemPK companyItemPK) {
+        Connection connection = DBConnection.getInstance().getConnection();
+        int affectedRows = 0;
+        try {
+            connection.setAutoCommit(false);
+            Item item = ItemDAO.getItem(companyItemPK.getItemCode());
+            if (ItemDAO.saveItem(item) == false) {
+                try {
+                    connection.rollback();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+                return false;
+            }
+            entity.CompanyItem companyItem = new CompanyItem(
+                    companyItemPK.getItemCode(),
+                    companyItemPK.getCompanyId()
+            );
+            if (CompanyItemDAO.saveCompanyItem(companyItem) == false) {
+                try {
+                    connection.rollback();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+                return false;
+
+            }
+            connection.commit();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+  /*
         java.sql.Date productionDate = java.sql.Date.valueOf(itemTM.getProductionDate());
         java.sql.Date expiryDate = java.sql.Date.valueOf(itemTM.getExpiryDate());
 
@@ -351,10 +400,10 @@ public class BusinessLogic {
                 itemTM.getUnitPrice()
 
 
-        );
+        );*/
 
-        return ItemDAO.saveItem(item);
-    }
+
+
 
 
     public static boolean deleteItem(String itemCode) {
@@ -388,13 +437,14 @@ public class BusinessLogic {
 
     //==============================================================================================
 
-    public static List<CompanyItem> getAllCompanyItems() {
+   /* public static List<CompanyItem> getAllCompanyItems() {
         ArrayList<CompanyItem> companyItems = new ArrayList<>();
         for (entity.CompanyItem companyItem : CompanyItemDAO.getAllCompanyItems()) {
             companyItems.add(new CompanyItem(
                     companyItem.getCompanyItemPK().getItemCode(),
                     companyItem.getCompanyItemPK().getCompanyId()
             ));
+
 
         }
         return companyItems;
@@ -425,7 +475,7 @@ public class BusinessLogic {
 
     public static boolean updateItem(entity.CompanyItem companyItem) {
         return CompanyItemDAO.updateCompanyItem(companyItem);
-    }
+    }*/
 }
 
 
