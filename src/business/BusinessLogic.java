@@ -109,6 +109,9 @@ public class BusinessLogic {
         }
     }
 
+
+
+
     public static List<ItemTM> getAllItems(){
         return  DaoLayer.getAllItems();
     }
