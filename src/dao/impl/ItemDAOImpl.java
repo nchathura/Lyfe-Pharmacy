@@ -1,5 +1,6 @@
 package dao.impl;
 
+import dao.ItemDAO;
 import db.DBConnection;
 import entity.Item;
 
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemDAOImpl {
+public class ItemDAOImpl implements ItemDAO {
     public  List<Item> getAllItems(){
         ArrayList<Item> items = new ArrayList<>();
         try {

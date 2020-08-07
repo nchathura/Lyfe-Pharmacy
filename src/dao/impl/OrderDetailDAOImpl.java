@@ -1,5 +1,6 @@
 package dao.impl;
 
+import dao.OrderDetailDAO;
 import db.DBConnection;
 import entity.OrderDetail;
 import entity.OrderDetailPK;
@@ -11,7 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderDetailDAOImpl {
+public class OrderDetailDAOImpl implements OrderDetailDAO {
     public  List<OrderDetail> getAllOrderDetails(){
         ArrayList<OrderDetail> ordersDetails = new ArrayList<>();
         try {

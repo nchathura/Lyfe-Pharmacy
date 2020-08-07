@@ -1,5 +1,7 @@
 package dao.impl;
 
+import dao.OrderDAO;
+import dao.OrderDetailDAO;
 import db.DBConnection;
 import entity.Order;
 
@@ -10,7 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderDAOImpl {
+public class OrderDAOImpl implements OrderDAO{
     public  List<Order> getAllOrders(){
         ArrayList<Order> orders = new ArrayList<>();
         try {

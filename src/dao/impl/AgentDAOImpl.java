@@ -1,5 +1,6 @@
 package dao.impl;
 
+import dao.AgentDAO;
 import db.DBConnection;
 import entity.Agent;
 
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AgentDAOImpl {
+public class AgentDAOImpl implements AgentDAO {
     public  List<Agent> getAllAgents(){
         ArrayList<Agent> agents = new ArrayList<>();
         try {

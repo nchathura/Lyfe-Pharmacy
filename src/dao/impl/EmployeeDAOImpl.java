@@ -1,5 +1,6 @@
 package dao.impl;
 
+import dao.EmployeeDAO;
 import db.DBConnection;
 import entity.Employee;
 
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmployeeDAOImpl {
+public class EmployeeDAOImpl implements EmployeeDAO {
     public  List<Employee> getAllEmployees(){
         ArrayList<Employee> employees = new ArrayList<>();
         try {
