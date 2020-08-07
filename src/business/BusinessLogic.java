@@ -1,6 +1,6 @@
 package business;
 
-import dao.*;
+import dao.impl.*;
 import db.DBConnection;
 import entity.*;
 import entity.CompanyItem;
@@ -8,21 +8,18 @@ import util.*;
 import util.Order;
 import util.OrderDetail;
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 
 
 
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class BusinessLogic {
 
     public static List<EmployeeTM> getAllEmployees() {
-        EmployeeDAO employeeDAO = new EmployeeDAO();
+        EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
         ArrayList<EmployeeTM> employees = new ArrayList<>();
         for (Employee employee : employeeDAO.getAllEmployees()) {
             employees.add(new EmployeeTM(employee.getEmpId(),
@@ -45,7 +42,7 @@ public class BusinessLogic {
     }
 
     public static EmployeeTM getEmployee(String employeeId) {
-        EmployeeDAO employeeDAO = new EmployeeDAO();
+        EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
 
         Employee employee = employeeDAO.getEmployee(employeeId);
         return new EmployeeTM(employee.getEmpId(),
@@ -60,7 +57,7 @@ public class BusinessLogic {
     }
 
     public static boolean saveEmployee(EmployeeTM employeeTM) {
-        EmployeeDAO employeeDAO = new EmployeeDAO();
+        EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
         java.sql.Date dateOfBirth = java.sql.Date.valueOf(employeeTM.getDateOfBirth());
         java.sql.Date joinedDate = java.sql.Date.valueOf(employeeTM.getJoinedDate());
 
@@ -80,13 +77,13 @@ public class BusinessLogic {
     }
 
     public static boolean deleteEmployee(String employeeId) {
-        EmployeeDAO employeeDAO = new EmployeeDAO();
+        EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
 
         return employeeDAO.deleteEmployee(employeeId);
     }
 
     public static boolean updateEmployee(EmployeeTM employeeTM) {
-        EmployeeDAO employeeDAO = new EmployeeDAO();
+        EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
         java.sql.Date dateOfBirth = java.sql.Date.valueOf(employeeTM.getDateOfBirth());
         java.sql.Date joinedDate = java.sql.Date.valueOf(employeeTM.getJoinedDate());
 
@@ -106,7 +103,7 @@ public class BusinessLogic {
     //==============================================================================================
 
     public static List<AgentTM> getAllAgents() {
-        AgentDAO agentDAO = new AgentDAO();
+        AgentDAOImpl agentDAO = new AgentDAOImpl();
 
         ArrayList<AgentTM> agents = new ArrayList<>();
         for (Agent agent : agentDAO.getAllAgents()) {
@@ -126,7 +123,7 @@ public class BusinessLogic {
     }
 
     public static AgentTM getEAgent(String agentId) {
-        AgentDAO agentDAO = new AgentDAO();
+        AgentDAOImpl agentDAO = new AgentDAOImpl();
 
         Agent agent = agentDAO.getAgent(agentId);
         return new AgentTM(agent.getAgentId(),
@@ -138,7 +135,7 @@ public class BusinessLogic {
     }
 
     public static boolean saveAgent(AgentTM agentTM) {
-        AgentDAO agentDAO = new AgentDAO();
+        AgentDAOImpl agentDAO = new AgentDAOImpl();
         java.sql.Date entryDate = java.sql.Date.valueOf(agentTM.getEntryDate());
         Agent agent = new Agent(
                 agentTM.getAgentId(),
@@ -154,13 +151,13 @@ public class BusinessLogic {
     }
 
     public static boolean deleteAgent(String agentId) {
-        AgentDAO agentDAO = new AgentDAO();
+        AgentDAOImpl agentDAO = new AgentDAOImpl();
         return agentDAO.deleteAgent(agentId);
 
     }
 
     public static boolean updateAgent(AgentTM agentTM) {
-        AgentDAO agentDAO = new AgentDAO();
+        AgentDAOImpl agentDAO = new AgentDAOImpl();
         java.sql.Date entryDate = java.sql.Date.valueOf(agentTM.getEntryDate());
 
 
@@ -182,7 +179,7 @@ public class BusinessLogic {
 
 
     public static List<CompanyTM> getAllCompanies() {
-        CompanyDAO companyDAO = new CompanyDAO();
+        CompanyDAOImpl companyDAO = new CompanyDAOImpl();
         ArrayList<CompanyTM> companies = new ArrayList<>();
         for (Company company :companyDAO.getAllCompanies()) {
             companies.add(new CompanyTM(company.getCompanyId(),
@@ -196,7 +193,7 @@ public class BusinessLogic {
     }
 
     public static CompanyTM getCompany(String companyId) {
-        CompanyDAO companyDAO = new CompanyDAO();
+        CompanyDAOImpl companyDAO = new CompanyDAOImpl();
 
         Company company = companyDAO.getCompany(companyId);
         return new CompanyTM(company.getCompanyId(),
@@ -208,7 +205,7 @@ public class BusinessLogic {
 
 
     public static boolean saveCompany(CompanyTM companyTM, List<ItemTM> itemsOfTheCompany) {
-        CompanyDAO companyDAO = new CompanyDAO();
+        CompanyDAOImpl companyDAO = new CompanyDAOImpl();
         java.sql.Date entryDate = java.sql.Date.valueOf(companyTM.getEntryDate());
         Company company = new Company(
                 companyTM.getCompanyId(),
@@ -223,13 +220,13 @@ public class BusinessLogic {
     }
 
     public static boolean deleteCompany(String companyId) {
-        CompanyDAO companyDAO = new CompanyDAO();
+        CompanyDAOImpl companyDAO = new CompanyDAOImpl();
 
         return companyDAO.deleteCompany(companyId);
     }
 
     public static boolean updateCompany(CompanyTM companyTM) {
-        CompanyDAO companyDAO = new CompanyDAO();
+        CompanyDAOImpl companyDAO = new CompanyDAOImpl();
 
         java.sql.Date entryDate = java.sql.Date.valueOf(companyTM.getEntryDate());
 
@@ -249,9 +246,9 @@ public class BusinessLogic {
     //==============================================================================================
 
     public static boolean placeOrder(Order order, List<OrderDetail> orderDetailList) {
-        OrderDAO orderDAO = new OrderDAO();
-        OrderDetailDAO orderDetailDAO = new OrderDetailDAO();
-        ItemDAO itemDAO = new ItemDAO();
+        OrderDAOImpl orderDAO = new OrderDAOImpl();
+        OrderDetailDAOImpl orderDetailDAO = new OrderDetailDAOImpl();
+        ItemDAOImpl itemDAO = new ItemDAOImpl();
         Connection connection = DBConnection.getInstance().getConnection();
         int affectedRows = 0;
         try {
@@ -316,7 +313,7 @@ public class BusinessLogic {
 
 
     public static List<ItemTM> getAllItems() {
-        ItemDAO itemDAO = new ItemDAO();
+        ItemDAOImpl itemDAO = new ItemDAOImpl();
         ArrayList<ItemTM> items = new ArrayList<>();
         for (Item item : itemDAO.getAllItems()) {
             items.add(new ItemTM(
@@ -340,7 +337,7 @@ public class BusinessLogic {
     }
 
     public static ItemTM getItem(String itemCode) {
-        ItemDAO itemDAO = new ItemDAO();
+        ItemDAOImpl itemDAO = new ItemDAOImpl();
         Item item = itemDAO.getItem(itemCode);
         return new ItemTM(
                 item.getItemCode(),
@@ -360,8 +357,8 @@ public class BusinessLogic {
 
 
     public static boolean saveItem(CompanyItemPK companyItemPK) {
-        ItemDAO itemDAO = new ItemDAO();
-        CompanyItemDAO companyItemDAO = new CompanyItemDAO();
+        ItemDAOImpl itemDAO = new ItemDAOImpl();
+        CompanyItemDAOImpl companyItemDAO = new CompanyItemDAOImpl();
         Connection connection = DBConnection.getInstance().getConnection();
         int affectedRows = 0;
         try {
@@ -428,12 +425,12 @@ public class BusinessLogic {
 
 
     public static boolean deleteItem(String itemCode) {
-        ItemDAO itemDAO = new ItemDAO();
+        ItemDAOImpl itemDAO = new ItemDAOImpl();
         return itemDAO.deleteItem(itemCode);
     }
 
     public static boolean updateItem(ItemTM itemTM) {
-        ItemDAO itemDAO = new ItemDAO();
+        ItemDAOImpl itemDAO = new ItemDAOImpl();
         java.sql.Date productionDate = java.sql.Date.valueOf(itemTM.getProductionDate());
         java.sql.Date expiryDate = java.sql.Date.valueOf(itemTM.getExpiryDate());
 
