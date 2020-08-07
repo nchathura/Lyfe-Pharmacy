@@ -39,7 +39,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 
     }
-    public  Object get(String key){
+    public  Object get(Object key){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM employee WHERE empId=(?)");
@@ -90,7 +90,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         }
 
     }
-    public  boolean delete(String key){
+    public  boolean delete(Object key){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM employee WHERE empId=(?)");
