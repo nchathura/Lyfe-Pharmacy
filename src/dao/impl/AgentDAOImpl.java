@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AgentDAOImpl implements AgentDAO {
+
     public  List<Agent> getAllAgents(){
         ArrayList<Agent> agents = new ArrayList<>();
         try {
