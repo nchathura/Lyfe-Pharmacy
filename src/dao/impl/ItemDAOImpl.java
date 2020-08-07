@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemDAOImpl implements ItemDAO {
-    public  List<Item> getAllItems(){
-        ArrayList<Item> items = new ArrayList<>();
+    public  List<Object> getAll(){
+        ArrayList<Object> items = new ArrayList<>();
         try {
 
             Connection connection = DBConnection.getInstance().getConnection();
@@ -45,12 +45,12 @@ public class ItemDAOImpl implements ItemDAO {
 
 
     }
-    public  Item getItem(String itemCode){
+    public  Object get(Object key){
         try {
 
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT *  FROM lyfepharmacy.item WHERE itemCode=(?)");
-            preparedStatement.setObject(1, itemCode);
+            preparedStatement.setObject(1, key);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return new Item(resultSet.getString(1),
@@ -74,21 +74,22 @@ public class ItemDAOImpl implements ItemDAO {
         return null;
 
     }
-    public  boolean saveItem(Item item){
+    public  boolean save(Object item){
+        Item item1 = (Item)item;
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO lyfepharmacy.item VALUES (?,?,?,?,?,?,?,?,?,?,?)");
-            preparedStatement.setObject(1,item.getItemCode());
-            preparedStatement.setObject(2,item.getDescription());
-            preparedStatement.setObject(3,item.getCategory());
-            preparedStatement.setObject(4,item.getManufacturer());
-            preparedStatement.setObject(5,item.getProductionDate());
-            preparedStatement.setObject(6,item.getExpiryDate());
-            preparedStatement.setObject(7,item.getBuyingPrice());
-            preparedStatement.setObject(8,item.getSellingPrice());
-            preparedStatement.setObject(9,item.getMinimumStockLevel());
-            preparedStatement.setObject(9,item.getQtyOnHand());
-            preparedStatement.setObject(9,item.getUnitPrice());
+            preparedStatement.setObject(1,item1.getItemCode());
+            preparedStatement.setObject(2,item1.getDescription());
+            preparedStatement.setObject(3,item1.getCategory());
+            preparedStatement.setObject(4,item1.getManufacturer());
+            preparedStatement.setObject(5,item1.getProductionDate());
+            preparedStatement.setObject(6,item1.getExpiryDate());
+            preparedStatement.setObject(7,item1.getBuyingPrice());
+            preparedStatement.setObject(8,item1.getSellingPrice());
+            preparedStatement.setObject(9,item1.getMinimumStockLevel());
+            preparedStatement.setObject(9,item1.getQtyOnHand());
+            preparedStatement.setObject(9,item1.getUnitPrice());
 
             return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -98,11 +99,11 @@ public class ItemDAOImpl implements ItemDAO {
 
 
     }
-    public  boolean deleteItem(String itemId){
+    public  boolean delete(Object key){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM lyfepharmacy.item WHERE lyfepharmacy.item.itemCode=(?)");
-            preparedStatement.setObject(1, itemId);
+            preparedStatement.setObject(1, key);
             return preparedStatement.executeUpdate()>0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -111,21 +112,22 @@ public class ItemDAOImpl implements ItemDAO {
 
 
     }
-    public  boolean updateItem(Item item){
+    public  boolean update(Object item){
+        Item item1 = (Item) item;
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE item SET description=(?),category=(?),manufacturer=(?),productionDate=(?),expiryDate=(?),buyingPrice=(?),sellingPrice=(?),minimumStockLevel=(?),qtyOnHand=(?),unitPrice=(?) WHERE itemCode=(?)");
-            preparedStatement.setObject(11,item.getItemCode());
-            preparedStatement.setObject(1,item.getDescription());
-            preparedStatement.setObject(2,item.getCategory());
-            preparedStatement.setObject(3,item.getManufacturer());
-            preparedStatement.setObject(4,item.getProductionDate());
-            preparedStatement.setObject(5,item.getExpiryDate());
-            preparedStatement.setObject(6,item.getBuyingPrice());
-            preparedStatement.setObject(7,item.getSellingPrice());
-            preparedStatement.setObject(8,item.getMinimumStockLevel());
-            preparedStatement.setObject(9,item.getQtyOnHand());
-            preparedStatement.setObject(10,item.getUnitPrice());
+            preparedStatement.setObject(11,item1.getItemCode());
+            preparedStatement.setObject(1,item1.getDescription());
+            preparedStatement.setObject(2,item1.getCategory());
+            preparedStatement.setObject(3,item1.getManufacturer());
+            preparedStatement.setObject(4,item1.getProductionDate());
+            preparedStatement.setObject(5,item1.getExpiryDate());
+            preparedStatement.setObject(6,item1.getBuyingPrice());
+            preparedStatement.setObject(7,item1.getSellingPrice());
+            preparedStatement.setObject(8,item1.getMinimumStockLevel());
+            preparedStatement.setObject(9,item1.getQtyOnHand());
+            preparedStatement.setObject(10,item1.getUnitPrice());
 
             return preparedStatement.executeUpdate()>0;
         } catch (SQLException e) {
