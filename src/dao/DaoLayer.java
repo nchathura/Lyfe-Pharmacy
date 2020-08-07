@@ -436,24 +436,28 @@ public class DaoLayer {
 
     }
 */
+
    public static int saveOrder(Order order) {
-       Connection connection = DBConnection.getInstance().getConnection();
-       int affectedRows=0;
-
-       try {
-
-           PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO `order` VALUES (?,?,?)");
-           preparedStatement.setObject(1, order.getOrderId());
-           preparedStatement.setObject(2, order.getEmpId());
-           preparedStatement.setObject(3, order.getOrderDate());
-           affectedRows = preparedStatement.executeUpdate();
 
 
-       } catch (SQLException e) {
-           e.printStackTrace();
+
+           Connection connection = DBConnection.getInstance().getConnection();
+           int affectedRows = 0;
+
+           try {
+
+               PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO `order` VALUES (?,?,?)");
+               preparedStatement.setObject(1, order.getOrderId());
+               preparedStatement.setObject(2, order.getEmpId());
+               preparedStatement.setObject(3, order.getOrderDate());
+               affectedRows = preparedStatement.executeUpdate();
+
+
+           } catch (SQLException e) {
+               e.printStackTrace();
+           }
+           return affectedRows;
        }
-       return affectedRows;
-   }
 
     public static int saveOrderDetails(List<OrderDetail> orderDetailList) {
         Connection connection = DBConnection.getInstance().getConnection();
