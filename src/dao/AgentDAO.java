@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AgentDAO {
-    public static List<Agent> getAllAgents(){
+    public  List<Agent> getAllAgents(){
         ArrayList<Agent> agents = new ArrayList<>();
         try {
             Connection connection = DBConnection.getInstance().getConnection();
@@ -34,7 +34,7 @@ public class AgentDAO {
         }
         return  agents;
     }
-    public static Agent getAgent(String agentId){
+    public  Agent getAgent(String agentId){
 
         try {
             Connection connection = DBConnection.getInstance().getConnection();
@@ -57,7 +57,7 @@ public class AgentDAO {
         return  null;
 
     }
-    public static boolean saveAgent(Agent agent){
+    public  boolean saveAgent(Agent agent){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO agent VALUES (?,?,?,?,?,?)");
@@ -76,7 +76,7 @@ public class AgentDAO {
         }
 
     }
-    public static boolean deleteAgent(String agentId){
+    public  boolean deleteAgent(String agentId){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM agent WHERE agentId=(?)");
@@ -90,7 +90,7 @@ public class AgentDAO {
         }
 
     }
-    public static boolean updateAgent(Agent agent){
+    public  boolean updateAgent(Agent agent){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE agent SET companyId=(?),entryDate=(?),agentPhoneNo=(?),agentEmail=(?),agentName=(?) WHERE agentId=(?)");
@@ -111,7 +111,7 @@ public class AgentDAO {
 
     }
 
-    public static String getLastAgentId(){
+    public  String getLastAgentId(){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM agent ORDER BY agentId DESC LIMIT 1");

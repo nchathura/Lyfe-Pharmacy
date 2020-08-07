@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CompanyItemDAO {
-    public static List<CompanyItem> getAllCompanyItems(){
+    public  List<CompanyItem> getAllCompanyItems(){
         ArrayList<CompanyItem> companyItems = new ArrayList<>();
         try {
             Connection connection = DBConnection.getInstance().getConnection();
@@ -34,7 +34,7 @@ public class CompanyItemDAO {
 
 
     }
-    public static CompanyItem getCompanyItem(CompanyItemPK companyItemPK){
+    public  CompanyItem getCompanyItem(CompanyItemPK companyItemPK){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM companyitem WHERE companyId=(?) AND ItemCode=(?)");
@@ -53,7 +53,7 @@ public class CompanyItemDAO {
         return  null;
 
     }
-    public static boolean saveCompanyItem(CompanyItem companyItem){
+    public  boolean saveCompanyItem(CompanyItem companyItem){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO companyitem VALUES (?,?)");
@@ -69,7 +69,7 @@ public class CompanyItemDAO {
         }
 
     }
-    public static boolean deleteCompanyItem(CompanyItemPK companyItemPK){
+    public  boolean deleteCompanyItem(CompanyItemPK companyItemPK){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM companyitem WHERE companyId=(?) AND ItemCode=(?)");
@@ -84,7 +84,7 @@ public class CompanyItemDAO {
         }
 
     }
-    public static boolean updateCompanyItem(CompanyItem companyItem){
+    public  boolean updateCompanyItem(CompanyItem companyItem){
         return false;
 
     }

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeDAO {
-    public static List<Employee> getAllEmployees(){
+    public  List<Employee> getAllEmployees(){
         ArrayList<Employee> employees = new ArrayList<>();
         try {
             Connection connection = DBConnection.getInstance().getConnection();
@@ -39,7 +39,7 @@ public class EmployeeDAO {
 
 
     }
-    public static Employee getEmployee(String empId){
+    public  Employee getEmployee(String empId){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM employee WHERE empId=(?)");
@@ -65,7 +65,7 @@ public class EmployeeDAO {
 
 
     }
-    public static boolean saveEmployee(Employee employee){
+    public  boolean saveEmployee(Employee employee){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO employee VALUES (?,?,?,?,?,?,?,?,?)");
@@ -89,7 +89,7 @@ public class EmployeeDAO {
         }
 
     }
-    public static boolean deleteEmployee(String employeeId){
+    public  boolean deleteEmployee(String employeeId){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM employee WHERE empId=(?)");
@@ -103,7 +103,7 @@ public class EmployeeDAO {
         }
 
     }
-    public static boolean updateEmployee(Employee employee){
+    public  boolean updateEmployee(Employee employee){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE employee SET empName=(?),empAddress=(?),email=(?),contactNo=(?),dateOfBirth=(?),joinedDate=(?),salary=(?),gender=(?) WHERE empId=(?)");
@@ -126,7 +126,7 @@ public class EmployeeDAO {
 
     }
 
-    public static String getLastEmployeeId(){
+    public  String getLastEmployeeId(){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM employee ORDER BY empId DESC LIMIT 1");

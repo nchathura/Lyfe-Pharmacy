@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemDAO {
-    public static List<Item> getAllItems(){
+    public  List<Item> getAllItems(){
         ArrayList<Item> items = new ArrayList<>();
         try {
 
@@ -45,7 +45,7 @@ public class ItemDAO {
 
 
     }
-    public static Item getItem(String itemCode){
+    public  Item getItem(String itemCode){
         try {
 
             Connection connection = DBConnection.getInstance().getConnection();
@@ -74,7 +74,7 @@ public class ItemDAO {
         return null;
 
     }
-    public static boolean saveItem(Item item){
+    public  boolean saveItem(Item item){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO lyfepharmacy.item VALUES (?,?,?,?,?,?,?,?,?,?,?)");
@@ -98,7 +98,7 @@ public class ItemDAO {
 
 
     }
-    public static boolean deleteItem(String itemId){
+    public  boolean deleteItem(String itemId){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM lyfepharmacy.item WHERE lyfepharmacy.item.itemCode=(?)");
@@ -111,7 +111,7 @@ public class ItemDAO {
 
 
     }
-    public static boolean updateItem(Item item){
+    public  boolean updateItem(Item item){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE item SET description=(?),category=(?),manufacturer=(?),productionDate=(?),expiryDate=(?),buyingPrice=(?),sellingPrice=(?),minimumStockLevel=(?),qtyOnHand=(?),unitPrice=(?) WHERE itemCode=(?)");
@@ -136,7 +136,7 @@ public class ItemDAO {
 
     }
 
-    public static String getLastItemCode(){
+    public  String getLastItemCode(){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM lyfepharmacy.item ORDER BY itemCode DESC LIMIT 1");

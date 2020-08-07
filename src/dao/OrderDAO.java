@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDAO {
-    public static List<Order> getAllOrders(){
+    public  List<Order> getAllOrders(){
         ArrayList<Order> orders = new ArrayList<>();
         try {
             Connection connection = DBConnection.getInstance().getConnection();
@@ -33,7 +33,7 @@ public class OrderDAO {
         return  orders;
 
     }
-    public static Order getOrder(String orderId){
+    public  Order getOrder(String orderId){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM `order` WHERE orderId=(?)");
@@ -54,7 +54,7 @@ public class OrderDAO {
         return  null;
 
     }
-    public static boolean saveOrder(Order order){
+    public  boolean saveOrder(Order order){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO `order` VALUES (?,?,?)");
@@ -72,7 +72,7 @@ public class OrderDAO {
 
         }
     }
-    public static boolean deleteOrder(String orderId){
+    public  boolean deleteOrder(String orderId){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM `order` WHERE orderId=(?)");
@@ -86,7 +86,7 @@ public class OrderDAO {
         }
 
     }
-    public static boolean updateOrder(Order order){
+    public  boolean updateOrder(Order order){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `order` SET empId=(?),orderDate=(?) WHERE orderId=(?)");
@@ -104,7 +104,7 @@ public class OrderDAO {
 
     }
 
-    public static String getLastOrderId(){
+    public  String getLastOrderId(){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM `order` ORDER BY orderId DESC LIMIT 1");

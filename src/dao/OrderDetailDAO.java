@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDetailDAO {
-    public static List<OrderDetail> getAllOrderDetails(){
+    public  List<OrderDetail> getAllOrderDetails(){
         ArrayList<OrderDetail> ordersDetails = new ArrayList<>();
         try {
             Connection connection = DBConnection.getInstance().getConnection();
@@ -36,7 +36,7 @@ public class OrderDetailDAO {
 
 
     }
-    public static OrderDetail getOrderDetail(OrderDetailPK orderDetailPK){
+    public  OrderDetail getOrderDetail(OrderDetailPK orderDetailPK){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM orderdetail WHERE orderId=(?) AND itemCode=(?)");
@@ -59,7 +59,7 @@ public class OrderDetailDAO {
         return  null;
 
     }
-    public static boolean saveOrderDetail(OrderDetail orderDetail){
+    public  boolean saveOrderDetail(OrderDetail orderDetail){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO orderdetail VALUES (?,?,?,?)");
@@ -77,7 +77,7 @@ public class OrderDetailDAO {
         }
 
     }
-    public static boolean deleteOrderDetail(OrderDetailPK orderDetailPK){
+    public  boolean deleteOrderDetail(OrderDetailPK orderDetailPK){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM orderdetail WHERE orderId=(?) AND itemCode=(?)");
@@ -94,7 +94,7 @@ public class OrderDetailDAO {
 
 
     }
-    public static boolean updateOrderDetail(OrderDetail orderDetail){
+    public  boolean updateOrderDetail(OrderDetail orderDetail){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE orderdetail SET qty=(?),unitPrice=(?) WHERE orderId=(?) AND itemCode=(?)");

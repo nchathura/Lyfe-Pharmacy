@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CompanyDAO {
-    public static List<Company> getAllCompanies(){
+    public  List<Company> getAllCompanies(){
         ArrayList<Company> companies = new ArrayList<>();
         try {
             Connection connection = DBConnection.getInstance().getConnection();
@@ -34,7 +34,7 @@ public class CompanyDAO {
         return  companies;
 
     }
-    public static Company getCompany(String companyId){
+    public  Company getCompany(String companyId){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM company WHERE companyId=(?)");
@@ -55,7 +55,7 @@ public class CompanyDAO {
         return  null;
 
     }
-    public static boolean saveCompany(Company company){
+    public  boolean saveCompany(Company company){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO company VALUES (?,?,?,?,?)");
@@ -75,7 +75,7 @@ public class CompanyDAO {
 
 
     }
-    public static boolean deleteCompany(String companyId){
+    public  boolean deleteCompany(String companyId){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM company WHERE companyId=(?)");
@@ -89,7 +89,7 @@ public class CompanyDAO {
         }
 
     }
-    public static boolean updateCompany(Company company){
+    public  boolean updateCompany(Company company){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE company SET companyName=(?),entryDate=(?),companyPhoneNo=(?),companyEmail=(?) WHERE companyId=(?)");
@@ -109,7 +109,7 @@ public class CompanyDAO {
 
     }
 
-    public static String getLastCompanyId(){
+    public  String getLastCompanyId(){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM company ORDER BY companyId DESC LIMIT 1");
