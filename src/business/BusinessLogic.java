@@ -8,6 +8,7 @@ import util.*;
 import util.Order;
 import util.OrderDetail;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 
 
@@ -242,7 +243,8 @@ public class BusinessLogic {
                     order.getEmpId(),
                     entryDate
             );
-            if (OrderDAO.saveOrder(order1)) {
+            boolean savedOrder = OrderDAO.saveOrder(order1);
+            if (savedOrder == false) {
                 connection.rollback();
                 return false;
             }
@@ -255,14 +257,17 @@ public class BusinessLogic {
                         orderDetail.getQty(),
                         orderDetail.getUnitPrice()
                 );
-                if (OrderDetailDAO.saveOrderDetail(orderDetail1) == false) {
+                boolean savedOrderDetail = OrderDetailDAO.saveOrderDetail(orderDetail1);
+                if (savedOrderDetail == false) {
                     connection.rollback();
                     return false;
                 }
 
 
                 Item item = ItemDAO.getItem(orderDetail.getItemCode());
-                if (ItemDAO.updateItem(item) == false) {
+                item.setQtyOnHand(item.getQtyOnHand().subtract(orderDetail.getQty()));
+                boolean updatedQty = ItemDAO.updateItem(item);
+                if (updatedQty==false) {
                     connection.rollback();
                     return false;
                 }
@@ -339,7 +344,8 @@ public class BusinessLogic {
         try {
             connection.setAutoCommit(false);
             Item item = ItemDAO.getItem(companyItemPK.getItemCode());
-            if (ItemDAO.saveItem(item) == false) {
+            boolean saveItem = ItemDAO.saveItem(item);
+            if (saveItem==false) {
                 try {
                     connection.rollback();
                 } catch (SQLException ex) {
@@ -351,7 +357,8 @@ public class BusinessLogic {
                     companyItemPK.getItemCode(),
                     companyItemPK.getCompanyId()
             );
-            if (CompanyItemDAO.saveCompanyItem(companyItem) == false) {
+            boolean saveCompanyItem = CompanyItemDAO.saveCompanyItem(companyItem);
+            if (saveCompanyItem == false) {
                 try {
                     connection.rollback();
                 } catch (SQLException ex) {
@@ -376,13 +383,7 @@ public class BusinessLogic {
     }
 
 
-
-
-
-
-
-
-  /*
+    /*
         java.sql.Date productionDate = java.sql.Date.valueOf(itemTM.getProductionDate());
         java.sql.Date expiryDate = java.sql.Date.valueOf(itemTM.getExpiryDate());
 
@@ -401,9 +402,6 @@ public class BusinessLogic {
 
 
         );*/
-
-
-
 
 
     public static boolean deleteItem(String itemCode) {
