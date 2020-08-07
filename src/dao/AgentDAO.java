@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface AgentDAO {
+public interface AgentDAO  {
     public List<Agent> getAllAgents();
     public  Agent getAgent(String agentId);
     public  boolean saveAgent(Agent agent);
