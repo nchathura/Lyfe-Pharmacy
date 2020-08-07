@@ -135,4 +135,28 @@ public class ItemDAO {
 
 
     }
+
+    public static String getLastItemCode(){
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM lyfepharmacy.item ORDER BY itemCode DESC LIMIT 1");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                return resultSet.getString(1);
+
+            }
+
+            return "I001";
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+
+
+        }
+
+
+    }
 }

@@ -125,4 +125,28 @@ public class EmployeeDAO {
 
 
     }
+
+    public static String getLastEmployeeId(){
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM employee ORDER BY empId DESC LIMIT 1");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                return resultSet.getString(1);
+
+            }
+
+            return "E001";
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+
+
+        }
+
+
+    }
 }

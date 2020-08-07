@@ -103,4 +103,28 @@ public class OrderDAO {
 
 
     }
+
+    public static String getLastOrderId(){
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM `order` ORDER BY orderId DESC LIMIT 1");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                return resultSet.getString(1);
+
+            }
+
+            return "O001";
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+
+
+        }
+
+
+    }
 }

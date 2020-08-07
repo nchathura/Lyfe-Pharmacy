@@ -110,4 +110,28 @@ public class AgentDAO {
 
 
     }
+
+    public static String getLastAgentId(){
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM agent ORDER BY agentId DESC LIMIT 1");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                return resultSet.getString(1);
+
+                            }
+
+            return "A001";
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+
+
+        }
+
+
+    }
 }
