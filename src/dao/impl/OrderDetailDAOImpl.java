@@ -62,13 +62,14 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
 
     }
     public  boolean save(Object orderDetail){
+        OrderDetail orderDetail1 = (OrderDetail)orderDetail;
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO orderdetail VALUES (?,?,?,?)");
-            preparedStatement.setObject(1, orderDetail.getOrderDetailPK().getOrderId());
-            preparedStatement.setObject(2, orderDetail.getOrderDetailPK().getItemCode());
-            preparedStatement.setObject(3,orderDetail.getQty());
-            preparedStatement.setObject(4,orderDetail.getUnitPrice());
+            preparedStatement.setObject(1, orderDetail1.getOrderDetailPK().getOrderId());
+            preparedStatement.setObject(2, orderDetail1.getOrderDetailPK().getItemCode());
+            preparedStatement.setObject(3,orderDetail1.getQty());
+            preparedStatement.setObject(4,orderDetail1.getUnitPrice());
 
             return preparedStatement.executeUpdate()>0;
 
@@ -80,11 +81,12 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
 
     }
     public  boolean delete(Object orderDetailPK){
+        OrderDetailPK orderDetailPK1 = (OrderDetailPK)orderDetailPK;
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM orderdetail WHERE orderId=(?) AND itemCode=(?)");
-            preparedStatement.setObject(1, orderDetailPK.getOrderId());
-            preparedStatement.setObject(1, orderDetailPK.getItemCode());
+            preparedStatement.setObject(1, orderDetailPK1.getOrderId());
+            preparedStatement.setObject(1, orderDetailPK1.getItemCode());
 
             return preparedStatement.executeUpdate()>0;
 
@@ -97,13 +99,14 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
 
     }
     public  boolean update(Object orderDetail){
+        OrderDetail orderDetail1 = (OrderDetail)orderDetail;
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE orderdetail SET qty=(?),unitPrice=(?) WHERE orderId=(?) AND itemCode=(?)");
-            preparedStatement.setObject(1, orderDetail.getQty());
-            preparedStatement.setObject(2, orderDetail.getUnitPrice());
-            preparedStatement.setObject(3, orderDetail.getOrderDetailPK().getOrderId());
-            preparedStatement.setObject(3, orderDetail.getOrderDetailPK().getItemCode());
+            preparedStatement.setObject(1, orderDetail1.getQty());
+            preparedStatement.setObject(2, orderDetail1.getUnitPrice());
+            preparedStatement.setObject(3, orderDetail1.getOrderDetailPK().getOrderId());
+            preparedStatement.setObject(3, orderDetail1.getOrderDetailPK().getItemCode());
 
 
             return preparedStatement.executeUpdate()>0;
