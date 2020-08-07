@@ -13,8 +13,8 @@ import java.util.List;
 
 public class AgentDAOImpl implements AgentDAO {
 
-    public  List<Agent> getAllAgents(){
-        ArrayList<Agent> agents = new ArrayList<>();
+    public  List<Object> getAll(){
+        ArrayList<Object> agents = new ArrayList<>();
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM agent");
@@ -36,12 +36,12 @@ public class AgentDAOImpl implements AgentDAO {
         }
         return  agents;
     }
-    public  Agent getAgent(String agentId){
+    public  Object get(String key){
 
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM agent WHERE agentId=(?)");
-            preparedStatement.setObject(1,agentId);
+            preparedStatement.setObject(1,key);
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
                return  new Agent(resultSet.getString(1),
@@ -59,16 +59,17 @@ public class AgentDAOImpl implements AgentDAO {
         return  null;
 
     }
-    public  boolean saveAgent(Agent agent){
+    public  boolean save(Object agent){
+        Agent agent1 = (Agent)agent;
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO agent VALUES (?,?,?,?,?,?)");
-            preparedStatement.setObject(1, agent.getAgentId());
-            preparedStatement.setObject(2, agent.getCompanyId());
-            preparedStatement.setObject(3, agent.getEntryDate());
-            preparedStatement.setObject(4, agent.getPhoneNo());
-            preparedStatement.setObject(5, agent.getEmail());
-            preparedStatement.setObject(6, agent.getName());
+            preparedStatement.setObject(1, agent1.getAgentId());
+            preparedStatement.setObject(2, agent1.getCompanyId());
+            preparedStatement.setObject(3, agent1.getEntryDate());
+            preparedStatement.setObject(4, agent1.getPhoneNo());
+            preparedStatement.setObject(5, agent1.getEmail());
+            preparedStatement.setObject(6, agent1.getName());
             return preparedStatement.executeUpdate()>0;
 
         } catch (SQLException e) {
@@ -78,11 +79,11 @@ public class AgentDAOImpl implements AgentDAO {
         }
 
     }
-    public  boolean deleteAgent(String agentId){
+    public  boolean delete(String key){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM agent WHERE agentId=(?)");
-            preparedStatement.setObject(1, agentId);
+            preparedStatement.setObject(1, key);
             return preparedStatement.executeUpdate()>0;
 
         } catch (SQLException e) {
@@ -92,16 +93,17 @@ public class AgentDAOImpl implements AgentDAO {
         }
 
     }
-    public  boolean updateAgent(Agent agent){
+    public  boolean update(Object agent){
+        Agent agent1 = (Agent)agent;
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE agent SET companyId=(?),entryDate=(?),agentPhoneNo=(?),agentEmail=(?),agentName=(?) WHERE agentId=(?)");
-            preparedStatement.setObject(6, agent.getAgentId());
-            preparedStatement.setObject(1, agent.getCompanyId());
-            preparedStatement.setObject(2, agent.getEntryDate());
-            preparedStatement.setObject(3, agent.getPhoneNo());
-            preparedStatement.setObject(4, agent.getEmail());
-            preparedStatement.setObject(5, agent.getName());
+            preparedStatement.setObject(6, agent1.getAgentId());
+            preparedStatement.setObject(1, agent1.getCompanyId());
+            preparedStatement.setObject(2, agent1.getEntryDate());
+            preparedStatement.setObject(3, agent1.getPhoneNo());
+            preparedStatement.setObject(4, agent1.getEmail());
+            preparedStatement.setObject(5, agent1.getName());
             return preparedStatement.executeUpdate()>0;
 
         } catch (SQLException e) {

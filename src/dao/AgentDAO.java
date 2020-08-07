@@ -10,12 +10,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface AgentDAO  {
-    public List<Agent> getAllAgents();
+public interface AgentDAO  extends SuperDAO{
+   /* public List<Agent> getAllAgents();
     public  Agent getAgent(String agentId);
     public  boolean saveAgent(Agent agent);
     public  boolean deleteAgent(String agentId);
-    public  boolean updateAgent(Agent agent);
+    public  boolean updateAgent(Agent agent);*/
 
 
 

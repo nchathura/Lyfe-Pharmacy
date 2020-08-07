@@ -5,7 +5,7 @@ import entity.CompanyItemPK;
 
 import java.util.List;
 
-public interface CompanyItemDAO {
+public interface CompanyItemDAO{
     public List<CompanyItem> getAllCompanyItems();
     public  CompanyItem getCompanyItem(CompanyItemPK companyItemPK);
     public  boolean saveCompanyItem(CompanyItem companyItem);

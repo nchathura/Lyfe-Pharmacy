@@ -4,7 +4,7 @@ import entity.Order;
 
 import java.util.List;
 
-public interface OrderDAO {
+public interface OrderDAO extends SuperDAO{
     public List<Order> getAllOrders();
     public  Order getOrder(String orderId);
     public  boolean saveOrder(Order order);
