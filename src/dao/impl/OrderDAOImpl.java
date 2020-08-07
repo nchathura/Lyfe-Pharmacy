@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDAOImpl implements OrderDAO{
-    public  List<Order> getAllOrders(){
-        ArrayList<Order> orders = new ArrayList<>();
+    public  List<Object> getAll(){
+        ArrayList<Object> orders = new ArrayList<>();
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM `order`");
@@ -34,7 +34,7 @@ public class OrderDAOImpl implements OrderDAO{
         return  orders;
 
     }
-    public  Order getOrder(String orderId){
+    public  Order get(Object orderId){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM `order` WHERE orderId=(?)");
@@ -55,13 +55,14 @@ public class OrderDAOImpl implements OrderDAO{
         return  null;
 
     }
-    public  boolean saveOrder(Order order){
+    public  boolean save(Object order){
+        Order order1 = (Order)order;
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO `order` VALUES (?,?,?)");
-            preparedStatement.setObject(1, order.getOrderId());
-            preparedStatement.setObject(2, order.getEmpId());
-            preparedStatement.setObject(3, order.getOrderDate());
+            preparedStatement.setObject(1, order1.getOrderId());
+            preparedStatement.setObject(2, order1.getEmpId());
+            preparedStatement.setObject(3, order1.getOrderDate());
 
 
 
@@ -73,7 +74,7 @@ public class OrderDAOImpl implements OrderDAO{
 
         }
     }
-    public  boolean deleteOrder(String orderId){
+    public  boolean delete(Object orderId){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM `order` WHERE orderId=(?)");
@@ -87,13 +88,14 @@ public class OrderDAOImpl implements OrderDAO{
         }
 
     }
-    public  boolean updateOrder(Order order){
+    public  boolean update(Object order){
+        Order order1 = (Order)order;
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `order` SET empId=(?),orderDate=(?) WHERE orderId=(?)");
-            preparedStatement.setObject(1, order.getEmpId());
-            preparedStatement.setObject(2, order.getOrderDate());
-            preparedStatement.setObject(3, order.getOrderId());
+            preparedStatement.setObject(1, order1.getEmpId());
+            preparedStatement.setObject(2, order1.getOrderDate());
+            preparedStatement.setObject(3, order1.getOrderId());
 
 
             return preparedStatement.executeUpdate()>0;
