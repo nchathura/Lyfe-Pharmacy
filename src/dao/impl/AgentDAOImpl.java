@@ -36,7 +36,7 @@ public class AgentDAOImpl implements AgentDAO {
         }
         return  agents;
     }
-    public  Object get(String key){
+    public  Agent get(Object key){
 
         try {
             Connection connection = DBConnection.getInstance().getConnection();
@@ -79,7 +79,7 @@ public class AgentDAOImpl implements AgentDAO {
         }
 
     }
-    public  boolean delete(String key){
+    public  boolean delete(Object key){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM agent WHERE agentId=(?)");

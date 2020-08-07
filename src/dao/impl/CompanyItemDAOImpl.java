@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CompanyItemDAOImpl implements CompanyItemDAO {
-    public  List<CompanyItem> getAllCompanyItems(){
-        ArrayList<CompanyItem> companyItems = new ArrayList<>();
+    public  List<Object> getAll(){
+        ArrayList<Object> companyItems = new ArrayList<>();
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM companyitem");
@@ -34,12 +34,13 @@ public class CompanyItemDAOImpl implements CompanyItemDAO {
 
 
     }
-    public  CompanyItem getCompanyItem(CompanyItemPK companyItemPK){
+    public  CompanyItem get(Object companyItemPK){
+        CompanyItemPK companyItemPK1 = (CompanyItemPK) companyItemPK;
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM companyitem WHERE companyId=(?) AND ItemCode=(?)");
-            preparedStatement.setObject(1,companyItemPK.getCompanyId());
-            preparedStatement.setObject(1,companyItemPK.getItemCode());
+            preparedStatement.setObject(1,companyItemPK1.getCompanyId());
+            preparedStatement.setObject(1,companyItemPK1.getItemCode());
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
                 return new CompanyItem(resultSet.getString(1),
@@ -53,12 +54,13 @@ public class CompanyItemDAOImpl implements CompanyItemDAO {
         return  null;
 
     }
-    public  boolean saveCompanyItem(CompanyItem companyItem){
+    public  boolean save(Object companyItem){
+        CompanyItem companyItem1 = (CompanyItem) companyItem;
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO companyitem VALUES (?,?)");
-            preparedStatement.setObject(1, companyItem.getCompanyItemPK().getItemCode());
-            preparedStatement.setObject(2, companyItem.getCompanyItemPK().getCompanyId());
+            preparedStatement.setObject(1, companyItem1.getCompanyItemPK().getItemCode());
+            preparedStatement.setObject(2, companyItem1.getCompanyItemPK().getCompanyId());
 
             return preparedStatement.executeUpdate()>0;
 
@@ -69,12 +71,13 @@ public class CompanyItemDAOImpl implements CompanyItemDAO {
         }
 
     }
-    public  boolean deleteCompanyItem(CompanyItemPK companyItemPK){
+    public  boolean delete(Object companyItemPK){
+        CompanyItemPK companyItemPK1 = (CompanyItemPK) companyItemPK;
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM companyitem WHERE companyId=(?) AND ItemCode=(?)");
-            preparedStatement.setObject(1, companyItemPK.getItemCode());
-            preparedStatement.setObject(2, companyItemPK.getCompanyId());
+            preparedStatement.setObject(1, companyItemPK1.getItemCode());
+            preparedStatement.setObject(2, companyItemPK1.getCompanyId());
             return preparedStatement.executeUpdate()>0;
 
         } catch (SQLException e) {
@@ -84,7 +87,7 @@ public class CompanyItemDAOImpl implements CompanyItemDAO {
         }
 
     }
-    public  boolean updateCompanyItem(CompanyItem companyItem){
+    public  boolean update(Object companyItem){
         return false;
 
     }

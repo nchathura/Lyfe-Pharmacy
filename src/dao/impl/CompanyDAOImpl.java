@@ -34,7 +34,7 @@ public class CompanyDAOImpl implements CompanyDAO {
         return  companies;
 
     }
-    public  Object get(String key){
+    public  Company get(Object key){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM company WHERE companyId=(?)");
@@ -77,7 +77,7 @@ public class CompanyDAOImpl implements CompanyDAO {
 
 
     }
-    public  boolean delete(String key){
+    public  boolean delete(Object key){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM company WHERE companyId=(?)");
