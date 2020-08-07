@@ -10,7 +10,7 @@ public interface CompanyItemDAO {
     public  CompanyItem getCompanyItem(CompanyItemPK companyItemPK);
     public  boolean saveCompanyItem(CompanyItem companyItem);
     public  boolean deleteCompanyItem(CompanyItemPK companyItemPK);
-    public  boolean updateCompanyItem(CompanyItem companyItem)
+    public  boolean updateCompanyItem(CompanyItem companyItem);
 
 
 }
