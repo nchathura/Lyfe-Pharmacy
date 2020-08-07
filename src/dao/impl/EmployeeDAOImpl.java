@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeDAOImpl implements EmployeeDAO {
-    public  List<Employee> getAllEmployees(){
-        ArrayList<Employee> employees = new ArrayList<>();
+    public  List<Object> getAll(){
+        ArrayList<Object> employees = new ArrayList<>();
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM employee");
@@ -39,11 +39,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 
     }
-    public  Employee getEmployee(String empId){
+    public  Object get(String key){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM employee WHERE empId=(?)");
-            preparedStatement.setObject(1,empId);
+            preparedStatement.setObject(1,key);
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
                 return new Employee(resultSet.getString(1),
@@ -65,19 +65,20 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 
     }
-    public  boolean saveEmployee(Employee employee){
+    public  boolean save(Object employee){
+        Employee employee1 = (Employee)employee;
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO employee VALUES (?,?,?,?,?,?,?,?,?)");
-            preparedStatement.setObject(1, employee.getEmpId());
-            preparedStatement.setObject(2, employee.getEmpName());
-            preparedStatement.setObject(3, employee.getEmpAddress());
-            preparedStatement.setObject(4, employee.getEmail());
-            preparedStatement.setObject(5, employee.getContactNo());
-            preparedStatement.setObject(4, employee.getDateOfBirth());
-            preparedStatement.setObject(4, employee.getJoinedDate());
-            preparedStatement.setObject(4, employee.getSalary());
-            preparedStatement.setObject(4, employee.getGender());
+            preparedStatement.setObject(1, employee1.getEmpId());
+            preparedStatement.setObject(2, employee1.getEmpName());
+            preparedStatement.setObject(3, employee1.getEmpAddress());
+            preparedStatement.setObject(4, employee1.getEmail());
+            preparedStatement.setObject(5, employee1.getContactNo());
+            preparedStatement.setObject(4, employee1.getDateOfBirth());
+            preparedStatement.setObject(4, employee1.getJoinedDate());
+            preparedStatement.setObject(4, employee1.getSalary());
+            preparedStatement.setObject(4, employee1.getGender());
 
 
             return preparedStatement.executeUpdate()>0;
@@ -89,11 +90,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         }
 
     }
-    public  boolean deleteEmployee(String employeeId){
+    public  boolean delete(String key){
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM employee WHERE empId=(?)");
-            preparedStatement.setObject(1, employeeId);
+            preparedStatement.setObject(1, key);
             return preparedStatement.executeUpdate()>0;
 
         } catch (SQLException e) {
@@ -103,19 +104,20 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         }
 
     }
-    public  boolean updateEmployee(Employee employee){
+    public  boolean update(Object employee){
+        Employee employee1 = (Employee)employee;
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE employee SET empName=(?),empAddress=(?),email=(?),contactNo=(?),dateOfBirth=(?),joinedDate=(?),salary=(?),gender=(?) WHERE empId=(?)");
-            preparedStatement.setObject(9, employee.getEmpId());
-            preparedStatement.setObject(1, employee.getEmpName());
-            preparedStatement.setObject(2, employee.getEmpAddress());
-            preparedStatement.setObject(3, employee.getEmail());
-            preparedStatement.setObject(4, employee.getContactNo());
-            preparedStatement.setObject(5, employee.getDateOfBirth());
-            preparedStatement.setObject(6, employee.getJoinedDate());
-            preparedStatement.setObject(7, employee.getSalary());
-            preparedStatement.setObject(8, employee.getGender());
+            preparedStatement.setObject(9, employee1.getEmpId());
+            preparedStatement.setObject(1, employee1.getEmpName());
+            preparedStatement.setObject(2, employee1.getEmpAddress());
+            preparedStatement.setObject(3, employee1.getEmail());
+            preparedStatement.setObject(4, employee1.getContactNo());
+            preparedStatement.setObject(5, employee1.getDateOfBirth());
+            preparedStatement.setObject(6, employee1.getJoinedDate());
+            preparedStatement.setObject(7, employee1.getSalary());
+            preparedStatement.setObject(8, employee1.getGender());
 
             return preparedStatement.executeUpdate()>0;
         } catch (SQLException e) {
