@@ -1,12 +1,9 @@
-package dao.impl;
+package dao;
 
 import db.DBConnection;
 import util.*;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -442,25 +439,23 @@ public class DaoLayer {
 
    public static int saveOrder(Order order) {
 
+       Connection connection = DBConnection.getInstance().getConnection();
+       int affectedRows=0;
+
+       try {
+
+           PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO `order` VALUES (?,?,?)");
+           preparedStatement.setObject(1, order.getOrderId());
+           preparedStatement.setObject(2, order.getEmpId());
+           preparedStatement.setObject(3, order.getOrderDate());
+           affectedRows = preparedStatement.executeUpdate();
 
 
-           Connection connection = DBConnection.getInstance().getConnection();
-           int affectedRows = 0;
-
-           try {
-
-               PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO `order` VALUES (?,?,?)");
-               preparedStatement.setObject(1, order.getOrderId());
-               preparedStatement.setObject(2, order.getEmpId());
-               preparedStatement.setObject(3, order.getOrderDate());
-               affectedRows = preparedStatement.executeUpdate();
-
-
-           } catch (SQLException e) {
-               e.printStackTrace();
-           }
-           return affectedRows;
+       } catch (SQLException e) {
+           e.printStackTrace();
        }
+       return affectedRows;
+   }
 
     public static int saveOrderDetails(List<OrderDetail> orderDetailList) {
         Connection connection = DBConnection.getInstance().getConnection();

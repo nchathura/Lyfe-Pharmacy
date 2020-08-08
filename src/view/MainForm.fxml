@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="root" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainFormController">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="615.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../asset/background.jpg" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="47.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lyfe-Pharmacy Admin">
+         <font>
+            <Font name="AJensonPro-Lt" size="18.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblMainDate" layoutX="488.0" layoutY="13.0" text="Date" textFill="WHITE">
+         <font>
+            <Font name="AJensonPro-SemiboldDisp" size="15.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="26.0" fitWidth="29.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../asset/maingif.gif" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgItem" fitHeight="75.0" fitWidth="75.0" layoutX="27.0" layoutY="120.0" onMouseClicked="#navigate" onMouseEntered="#playMouseEnterAnimation" onMouseExited="#playMouseExitAnimation" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../asset/add.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgAgent" fitHeight="75.0" fitWidth="63.0" layoutX="156.0" layoutY="120.0" onMouseClicked="#navigate" onMouseEntered="#playMouseEnterAnimation" onMouseExited="#playMouseExitAnimation" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../asset/agent.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgCompany" fitHeight="83.0" fitWidth="83.0" layoutX="266.0" layoutY="116.0" onMouseClicked="#navigate" onMouseEntered="#playMouseEnterAnimation" onMouseExited="#playMouseExitAnimation" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../asset/company.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgEmployee" fitHeight="75.0" fitWidth="75.0" layoutX="395.0" layoutY="120.0" onMouseClicked="#navigate" onMouseEntered="#playMouseEnterAnimation" onMouseExited="#playMouseExitAnimation" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../asset/employee.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgOrder" fitHeight="83.0" fitWidth="83.0" layoutX="516.0" layoutY="116.0" onMouseClicked="#navigate" onMouseEntered="#playMouseEnterAnimation" onMouseExited="#playMouseExitAnimation" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../asset/placeOrder.png" />
+         </image>
+      </ImageView>
+      <Text fill="#3e3e3e" layoutX="229.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Copyright 2020 - DEP 5 Team" />
+      <Label fx:id="lblMenu" layoutX="270.0" layoutY="277.0" text="Welcome!" textFill="RED">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDescription" layoutX="162.0" layoutY="303.0" text="Please select one of above main operations to proceed" />
+   </children>
+</AnchorPane>
